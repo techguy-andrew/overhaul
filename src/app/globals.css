@@ -1,0 +1,55 @@
+@import "tailwindcss";
+@import "../styles/tokens.css";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  /* Semantic Color Tokens */
+  --color-interactive-primary: var(--color-interactive-primary);
+  --color-interactive-primary-hover: var(--color-interactive-primary-hover);
+  --color-interactive-secondary: var(--color-interactive-secondary);
+  --color-interactive-secondary-hover: var(--color-interactive-secondary-hover);
+  --color-interactive-danger: var(--color-interactive-danger);
+  --color-interactive-danger-hover: var(--color-interactive-danger-hover);
+
+  /* Surface Tokens */
+  --color-surface-background: var(--color-surface-background);
+  --color-surface-card: var(--color-surface-card);
+  --color-surface-elevated: var(--color-surface-elevated);
+
+  /* Text Tokens */
+  --color-text-primary: var(--color-text-primary);
+  --color-text-secondary: var(--color-text-secondary);
+  --color-text-muted: var(--color-text-muted);
+  --color-text-accent: var(--color-text-accent);
+
+  /* Legacy tokens (keep for compatibility) */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  /* Spacing Tokens */
+  --spacing-container-padding: var(--space-container-padding);
+  --spacing-section-gap: var(--space-section-gap);
+  --spacing-component-gap: var(--space-component-gap);
+  --spacing-element-gap: var(--space-element-gap);
+
+  /* Font Tokens */
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}

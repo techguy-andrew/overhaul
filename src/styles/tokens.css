@@ -1,0 +1,93 @@
+/* src/styles/tokens.css */
+:root {
+  /* ========================================
+   * PRIMITIVE TOKENS - Raw Material Values
+   * ======================================== */
+
+  /* Color Primitives */
+  --color-blue-50: #eff6ff;
+  --color-blue-100: #dbeafe;
+  --color-blue-500: #3b82f6;
+  --color-blue-600: #2563eb;
+  --color-blue-700: #1d4ed8;
+
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5db;
+  --color-gray-600: #4b5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1f2937;
+  --color-gray-900: #111827;
+
+  --color-red-500: #ef4444;
+  --color-red-600: #dc2626;
+  --color-green-500: #10b981;
+  --color-green-600: #059669;
+
+  /* Spacing Primitives */
+  --spacing-2: 0.5rem;
+  --spacing-3: 0.75rem;
+  --spacing-4: 1rem;
+  --spacing-6: 1.5rem;
+  --spacing-8: 2rem;
+  --spacing-12: 3rem;
+
+  /* ========================================
+   * SEMANTIC TOKENS - Intent-Based Naming
+   * ======================================== */
+
+  /* Interactive States */
+  --color-interactive-primary: var(--color-blue-500);
+  --color-interactive-primary-hover: var(--color-blue-600);
+  --color-interactive-secondary: var(--color-gray-200);
+  --color-interactive-secondary-hover: var(--color-gray-300);
+  --color-interactive-danger: var(--color-red-500);
+  --color-interactive-danger-hover: var(--color-red-600);
+
+  /* Surface Elevations */
+  --color-surface-background: var(--color-gray-50);
+  --color-surface-card: #ffffff;
+  --color-surface-elevated: #ffffff;
+
+  /* Text Hierarchies */
+  --color-text-primary: var(--color-gray-900);
+  --color-text-secondary: var(--color-gray-700);
+  --color-text-muted: var(--color-gray-600);
+  --color-text-accent: var(--color-blue-600);
+
+  /* Spacing System */
+  --space-container-padding: var(--spacing-4);
+  --space-section-gap: var(--spacing-12);
+  --space-component-gap: var(--spacing-6);
+  --space-element-gap: var(--spacing-3);
+
+  /* Legacy tokens for compatibility */
+  --color-background-main: var(--color-surface-background);
+  --color-text-heading: var(--color-text-primary);
+}
+
+[data-theme="dark"] {
+  /* Interactive States - Dark */
+  --color-interactive-primary: #60a5fa;
+  --color-interactive-primary-hover: #3b82f6;
+  --color-interactive-secondary: var(--color-gray-700);
+  --color-interactive-secondary-hover: var(--color-gray-600);
+  --color-interactive-danger: #f87171;
+  --color-interactive-danger-hover: #ef4444;
+
+  /* Surface Elevations - Dark */
+  --color-surface-background: var(--color-gray-900);
+  --color-surface-card: var(--color-gray-800);
+  --color-surface-elevated: var(--color-gray-700);
+
+  /* Text Hierarchies - Dark */
+  --color-text-primary: var(--color-gray-100);
+  --color-text-secondary: var(--color-gray-300);
+  --color-text-muted: var(--color-gray-600);
+  --color-text-accent: #60a5fa;
+
+  /* Legacy compatibility */
+  --color-background-main: var(--color-surface-background);
+  --color-text-heading: var(--color-text-primary);
+}
