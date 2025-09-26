@@ -3,9 +3,10 @@
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Menu, X, Home, FileText, Settings, Users, BarChart3 } from 'lucide-react'
+import { Menu, Home, FileText, Settings, Users, BarChart3 } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
+import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetDescription } from '@/components/ui/sheet'
 import { Sidebar } from './Sidebar'
 
 // Navigation configuration - inline for portability
@@ -67,7 +68,7 @@ interface TopBarProps {
 }
 
 export function TopBar({ children, actions }: TopBarProps) {
-  const [isOpen, setIsOpen] = useState(false)
+  const [open, setOpen] = useState(false)
   const pathname = usePathname()
 
   // Inline navigation hook logic
@@ -83,25 +84,6 @@ export function TopBar({ children, actions }: TopBarProps) {
     window.scrollTo(0, 0)
   }, [pathname])
 
-  // Handle escape key and body scroll lock
-  useEffect(() => {
-    const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape' && isOpen) {
-        setIsOpen(false)
-      }
-    }
-
-    if (isOpen) {
-      document.addEventListener('keydown', handleEscape)
-      document.body.style.overflow = 'hidden'
-    }
-
-    return () => {
-      document.removeEventListener('keydown', handleEscape)
-      document.body.style.overflow = 'unset'
-    }
-  }, [isOpen])
-
   return (
     <>
       {/* TopBar Header */}
@@ -109,18 +91,38 @@ export function TopBar({ children, actions }: TopBarProps) {
         <div className="flex items-center justify-between h-16 px-container-padding">
           {/* Left Section: Navigation + Brand */}
           <div className="flex items-center gap-element-gap">
-            {/* Universal Menu Toggle - Seamless hamburger-to-close transition */}
-            <Button
-              variant="ghost"
-              size="sm"
-              className="px-element-gap py-element-gap transition-all duration-200 ease-in-out"
-              onClick={() => setIsOpen(!isOpen)}
-              aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
-              aria-expanded={isOpen}
-              aria-controls="navigation-sidebar"
-            >
-              {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            </Button>
+            {/* Claims App Style Sheet Navigation */}
+            <Sheet open={open} onOpenChange={setOpen}>
+              <SheetTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="px-element-gap py-element-gap"
+                  aria-label="Open navigation menu"
+                  aria-expanded={open}
+                  aria-controls="mobile-navigation"
+                >
+                  <Menu className="h-5 w-5" />
+                </Button>
+              </SheetTrigger>
+
+              <SheetContent
+                side="left"
+                className="w-[280px] sm:w-[300px] p-0"
+                id="mobile-navigation"
+                hideCloseButton={true}
+              >
+                <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
+                <SheetDescription className="sr-only">
+                  Main navigation for the Application
+                </SheetDescription>
+                <Sidebar
+                  navigation={NAVIGATION}
+                  isActive={isActive}
+                  onLinkClick={() => setOpen(false)}
+                />
+              </SheetContent>
+            </Sheet>
 
             {/* Brand */}
             <Link
@@ -145,32 +147,6 @@ export function TopBar({ children, actions }: TopBarProps) {
           </div>
         </div>
       </header>
-
-      {/* Custom Overlay - Claims-App Style */}
-      {isOpen && (
-        <div className="fixed inset-0 z-40">
-          {/* Backdrop - only dims content area below topbar */}
-          <div
-            className="absolute top-16 left-0 right-0 bottom-0 bg-surface-background/50 transition-opacity duration-200"
-            onClick={() => setIsOpen(false)}
-            aria-label="Close navigation menu"
-          />
-
-          {/* Sidebar positioned below topbar */}
-          <div
-            className="absolute top-16 left-0 w-[280px] h-[calc(100vh-4rem)] bg-surface-card border-r border-interactive-secondary shadow-lg transform transition-transform duration-200 ease-in-out"
-            id="navigation-sidebar"
-            role="navigation"
-            aria-label="Main navigation"
-          >
-            <Sidebar
-              navigation={NAVIGATION}
-              isActive={isActive}
-              onLinkClick={() => setIsOpen(false)}
-            />
-          </div>
-        </div>
-      )}
     </>
   )
 }

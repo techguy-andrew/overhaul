@@ -351,7 +351,7 @@ function TopBar(param) {
                 className: "fixed inset-0 z-40",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$15$2e$5$2e$4_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "absolute top-16 left-0 right-0 bottom-0 bg-surface-background/50 transition-opacity duration-200",
+                        className: "absolute top-16 left-0 right-0 bottom-0 bg-surface-background/50 transition-opacity duration-300 ".concat(isOpen ? 'opacity-100' : 'opacity-0'),
                         onClick: ()=>setIsOpen(false),
                         "aria-label": "Close navigation menu"
                     }, void 0, false, {
@@ -360,7 +360,7 @@ function TopBar(param) {
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$15$2e$5$2e$4_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "absolute top-16 left-0 w-[280px] h-[calc(100vh-4rem)] bg-surface-card border-r border-interactive-secondary shadow-lg transform transition-transform duration-200 ease-in-out",
+                        className: "absolute top-16 left-0 w-[280px] h-[calc(100vh-4rem)] bg-surface-card border-r border-interactive-secondary shadow-lg transform transition-transform ease-out ".concat(isOpen ? 'translate-x-0 duration-500' : '-translate-x-full duration-300'),
                         id: "navigation-sidebar",
                         role: "navigation",
                         "aria-label": "Main navigation",
@@ -370,12 +370,12 @@ function TopBar(param) {
                             onLinkClick: ()=>setIsOpen(false)
                         }, void 0, false, {
                             fileName: "[project]/src/components/navigation/TopBar.tsx",
-                            lineNumber: 166,
+                            lineNumber: 172,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/components/navigation/TopBar.tsx",
-                        lineNumber: 160,
+                        lineNumber: 162,
                         columnNumber: 11
                     }, this)
                 ]

@@ -26,9 +26,11 @@ This document establishes the unified architectural standards and development pr
 - **Package Manager**: pnpm
 
 ### Styling & UI
-- **CSS Framework**: Tailwind CSS 3.4+
-- **UI Components**: shadcn/ui (CLI copy only - no npm packages)
+- **CSS Framework**: Tailwind CSS 4.x
+- **UI Components**: shadcn/ui + Radix UI primitives
 - **Design System**: Semantic design tokens with CSS custom properties
+- **Icons**: Lucide React (standardized across all projects)
+- **Animations**: Radix UI + tailwindcss-animate for professional navigation
 
 ### Backend & Database
 - **Database**: PostgreSQL (Neon)
@@ -138,6 +140,276 @@ Our design system uses a two-layer token architecture:
 --space-component-gap: /* Space between components */
 --space-element-gap: /* Space between elements */
 ```
+
+---
+
+## Modern Navigation Architecture
+
+### Ultra-Portable Navigation System
+
+Our navigation architecture combines Radix UI primitives with semantic design tokens to create a truly portable, professional-grade navigation system that works across any client project.
+
+### Key Technologies
+- **Radix UI Dialog**: Foundation for Sheet-based mobile navigation
+- **Lucide React**: Consistent icon library across all agency projects
+- **Semantic Tokens**: Theme-agnostic styling system
+- **tailwindcss-animate**: Professional slide animations
+
+### Navigation Component Structure
+
+#### 1. TopBar Component (Agency Standard)
+```typescript
+// src/components/navigation/TopBar.tsx
+'use client'
+
+import React, { useState, useEffect } from 'react'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { Menu, Home, FileText, Settings, Users, BarChart3 } from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
+import { Button } from '@/components/ui/Button'
+import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetDescription } from '@/components/ui/sheet'
+import { Sidebar } from './Sidebar'
+
+// Navigation configuration - inline for portability
+interface NavItem {
+  href: string
+  label: string
+  icon: LucideIcon
+  description?: string
+  requiresAuth?: boolean
+}
+
+const NAVIGATION: NavItem[] = [
+  {
+    href: '/',
+    label: 'Dashboard',
+    icon: Home,
+    description: 'Dashboard overview and analytics',
+    requiresAuth: false
+  },
+  // ... more navigation items
+]
+
+export function TopBar({ children, actions }: TopBarProps) {
+  const [open, setOpen] = useState(false)
+  const pathname = usePathname()
+
+  const isActive = (href: string) => {
+    if (href === '/') return pathname === href
+    return pathname.startsWith(href)
+  }
+
+  return (
+    <>
+      <header className="fixed top-0 left-0 right-0 z-50 bg-surface-card border-b border-interactive-secondary">
+        <div className="flex items-center justify-between h-16 px-container-padding">
+          <div className="flex items-center gap-element-gap">
+            {/* Radix UI Sheet Navigation */}
+            <Sheet open={open} onOpenChange={setOpen}>
+              <SheetTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="px-element-gap py-element-gap"
+                  aria-label="Open navigation menu"
+                >
+                  <Menu className="h-5 w-5" />
+                </Button>
+              </SheetTrigger>
+
+              <SheetContent
+                side="left"
+                className="w-[280px] sm:w-[300px] p-0"
+              >
+                <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
+                <SheetDescription className="sr-only">
+                  Main navigation for the application
+                </SheetDescription>
+                <Sidebar
+                  navigation={NAVIGATION}
+                  isActive={isActive}
+                  onLinkClick={() => setOpen(false)}
+                />
+              </SheetContent>
+            </Sheet>
+
+            <Link
+              href="/"
+              className="font-semibold text-lg text-text-primary hover:text-text-accent transition-colors"
+            >
+              Application
+            </Link>
+          </div>
+
+          {/* Center content */}
+          {children && (
+            <div className="hidden md:flex flex-1 max-w-2xl mx-component-gap">
+              {children}
+            </div>
+          )}
+
+          {/* Actions (theme toggle, etc.) */}
+          <div className="flex items-center gap-element-gap">
+            {actions}
+          </div>
+        </div>
+      </header>
+    </>
+  )
+}
+```
+
+#### 2. Professional Sidebar Component
+```typescript
+// src/components/navigation/Sidebar.tsx
+export function Sidebar({ navigation, isActive, onLinkClick, className }: SidebarProps) {
+  return (
+    <nav className={cn('flex flex-col h-full bg-surface-card', className)}>
+      {/* Header Section */}
+      <div className="p-container-padding border-b border-interactive-secondary">
+        <h2 className="font-semibold text-lg text-text-primary">Navigation</h2>
+      </div>
+
+      {/* Navigation Links */}
+      <div className="flex-1 overflow-y-auto">
+        <div className="flex flex-col gap-1 p-element-gap">
+          {navigation.map((item) => (
+            <Button
+              key={item.href}
+              variant={isActive(item.href) ? 'secondary' : 'ghost'}
+              className={cn(
+                'w-full justify-start gap-element-gap h-11',
+                !isActive(item.href) && 'text-text-secondary hover:text-text-primary'
+              )}
+              asChild
+            >
+              <Link
+                href={item.href}
+                onClick={onLinkClick}
+                aria-current={isActive(item.href) ? 'page' : undefined}
+                title={item.description}
+              >
+                <item.icon className="h-4 w-4 flex-shrink-0" />
+                {item.label}
+              </Link>
+            </Button>
+          ))}
+        </div>
+      </div>
+
+      {/* Footer Section */}
+      <div className="p-container-padding border-t border-interactive-secondary">
+        <div className="text-xs text-text-muted">
+          Application v1.0
+        </div>
+      </div>
+    </nav>
+  )
+}
+```
+
+#### 3. Radix UI Sheet Component (shadcn/ui compliant)
+```typescript
+// src/components/ui/sheet.tsx
+"use client"
+
+import * as React from "react"
+import * as SheetPrimitive from "@radix-ui/react-dialog"
+import { cva, type VariantProps } from "class-variance-authority"
+import { X } from "lucide-react"
+import { cn } from "@/lib/utils"
+
+const Sheet = SheetPrimitive.Root
+const SheetTrigger = SheetPrimitive.Trigger
+const SheetClose = SheetPrimitive.Close
+const SheetPortal = SheetPrimitive.Portal
+
+const SheetOverlay = React.forwardRef<
+  React.ElementRef<typeof SheetPrimitive.Overlay>,
+  React.ComponentPropsWithoutRef<typeof SheetPrimitive.Overlay>
+>(({ className, ...props }, ref) => (
+  <SheetPrimitive.Overlay
+    className={cn(
+      "fixed inset-0 z-60 bg-transparent data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
+      className
+    )}
+    {...props}
+    ref={ref}
+  />
+))
+
+const sheetVariants = cva(
+  "fixed z-65 gap-4 bg-background p-6 shadow-lg transition ease-in-out data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:duration-300 data-[state=open]:duration-500",
+  {
+    variants: {
+      side: {
+        top: "inset-x-0 top-0 border-b data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top",
+        bottom: "inset-x-0 bottom-0 border-t data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom",
+        left: "inset-y-0 left-0 w-full max-w-sm border-r data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left",
+        right: "inset-y-0 right-0 h-full w-3/4 border-l data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right sm:max-w-sm",
+      },
+    },
+    defaultVariants: {
+      side: "right",
+    },
+  }
+)
+
+const SheetContent = React.forwardRef<
+  React.ElementRef<typeof SheetPrimitive.Content>,
+  React.ComponentPropsWithoutRef<typeof SheetPrimitive.Content> & VariantProps<typeof sheetVariants>
+>(({ side = "right", className, children, ...props }, ref) => (
+  <SheetPortal>
+    <SheetOverlay />
+    <SheetPrimitive.Content
+      ref={ref}
+      className={cn(sheetVariants({ side }), className)}
+      {...props}
+    >
+      {children}
+      <SheetPrimitive.Close className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary">
+        <X className="h-4 w-4" />
+        <span className="sr-only">Close</span>
+      </SheetPrimitive.Close>
+    </SheetPrimitive.Content>
+  </SheetPortal>
+))
+
+export {
+  Sheet,
+  SheetPortal,
+  SheetOverlay,
+  SheetTrigger,
+  SheetClose,
+  SheetContent,
+  SheetHeader,
+  SheetFooter,
+  SheetTitle,
+  SheetDescription,
+}
+```
+
+### Navigation Features
+
+#### Professional Animation System
+- **500ms slide-in duration** for smooth, deliberate opening
+- **300ms slide-out duration** for responsive closing
+- **Full-height sidebar** using `inset-y-0` positioning
+- **Transparent overlay** with proper fade animations
+- **Native browser performance** via Radix UI primitives
+
+#### Agency-Standard Portability
+- **Inline navigation configuration** - easy to copy between projects
+- **Self-contained components** - no external dependencies beyond Radix UI
+- **Semantic token integration** - automatic theme compliance
+- **Accessibility built-in** - ARIA labels, keyboard navigation, screen reader support
+
+#### Client Customization Ready
+- **Theme-agnostic styling** - works with any color scheme
+- **Configurable branding** - easy logo/title replacement
+- **Flexible layouts** - center content area, action buttons
+- **Responsive design** - mobile-first with progressive enhancement
 
 ---
 
@@ -316,6 +588,12 @@ cd project-name
 pnpm add @prisma/client prisma
 pnpm add @clerk/nextjs
 
+# UI & Navigation dependencies
+pnpm add @radix-ui/react-dialog
+pnpm add class-variance-authority
+pnpm add lucide-react
+pnpm add tailwindcss-animate
+
 # Development dependencies
 pnpm add -D @types/node
 ```
@@ -331,6 +609,18 @@ npx prisma init
 ```bash
 npx shadcn-ui@latest init
 npx shadcn-ui@latest add button card input
+```
+
+### 5. Setup Navigation System
+
+```bash
+# Create navigation component structure
+mkdir -p src/components/navigation
+mkdir -p src/components/ui
+
+# Copy the Radix UI Sheet component to src/components/ui/sheet.tsx
+# Copy TopBar and Sidebar components to src/components/navigation/
+# Update globals.css with tailwindcss-animate import
 ```
 
 ### 5. Create Token System

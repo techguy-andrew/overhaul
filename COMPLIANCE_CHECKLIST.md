@@ -12,12 +12,29 @@
 - [ ] pnpm as package manager
 - [ ] All required dependencies up to date
 
+### Navigation Dependencies Check
+- [ ] `@radix-ui/react-dialog` installed for Sheet primitive
+- [ ] `class-variance-authority` installed for variant management
+- [ ] `lucide-react` installed for consistent icons
+- [ ] `tailwindcss-animate` installed for professional animations
+- [ ] All navigation components use TypeScript interfaces
+
 ### Design Token System Check
 - [ ] `src/styles/tokens.css` exists and is properly structured
 - [ ] Two-layer token architecture in place (primitive → semantic)
 - [ ] Theme switching system implemented (`[data-theme="dark"]`)
 - [ ] Semantic tokens imported in `globals.css`
 - [ ] No hardcoded design values anywhere in codebase
+
+### Navigation System Check
+- [ ] TopBar component exists at `src/components/navigation/TopBar.tsx`
+- [ ] Sidebar component exists at `src/components/navigation/Sidebar.tsx`
+- [ ] Sheet component exists at `src/components/ui/sheet.tsx`
+- [ ] All navigation components use semantic tokens exclusively
+- [ ] Radix UI Sheet primitive properly implemented
+- [ ] Navigation configuration is inline (NAVIGATION array)
+- [ ] Lucide icons used for all navigation items
+- [ ] Accessibility attributes present (ARIA labels, screen reader text)
 
 ---
 
@@ -208,6 +225,54 @@ const Button = ({ variant = 'primary' }) => {
 
 ---
 
+## Navigation Component Standards 🧭
+
+### TopBar Component Requirements
+- [ ] Uses fixed positioning (`fixed top-0 left-0 right-0 z-50`)
+- [ ] Background uses `bg-surface-card border-b border-interactive-secondary`
+- [ ] Height is standardized to `h-16`
+- [ ] Padding uses semantic token `px-container-padding`
+- [ ] Contains hamburger menu trigger using Lucide `Menu` icon
+- [ ] Brand/logo section with hover states using semantic tokens
+- [ ] Optional center content area for search/breadcrumbs
+- [ ] Actions section for theme toggle and other controls
+- [ ] All interactive elements use semantic hover states
+
+### Sidebar Component Requirements
+- [ ] Uses semantic background `bg-surface-card`
+- [ ] Full height with proper flex layout (`flex flex-col h-full`)
+- [ ] Header section with `p-container-padding border-b border-interactive-secondary`
+- [ ] Navigation title uses `text-text-primary`
+- [ ] Scrollable navigation area (`flex-1 overflow-y-auto`)
+- [ ] Navigation links use Button component with semantic variants
+- [ ] Active links use `secondary` variant, inactive use `ghost`
+- [ ] Inactive links use `text-text-secondary hover:text-text-primary`
+- [ ] Footer section with app version/info
+- [ ] All Lucide icons sized consistently (`h-4 w-4 flex-shrink-0`)
+
+### Sheet Component Requirements
+- [ ] Built on `@radix-ui/react-dialog` primitive
+- [ ] Uses `class-variance-authority` for variant management
+- [ ] Implements proper accessibility (SheetTitle, SheetDescription)
+- [ ] Overlay uses transparent background with fade animations
+- [ ] Content uses proper z-index layering (`z-65` content, `z-60` overlay)
+- [ ] Left-side variant uses `inset-y-0 left-0` positioning
+- [ ] Animation timing: `duration-500` open, `duration-300` close
+- [ ] Close button positioned consistently (`right-4 top-4`)
+- [ ] All animations use `data-[state]` attributes
+- [ ] Proper cleanup via SheetPortal
+
+### Animation Standards
+- [ ] Opening animation uses `data-[state=open]:slide-in-from-left`
+- [ ] Closing animation uses `data-[state=closed]:slide-out-to-left`
+- [ ] Overlay fade uses `fade-in-0` and `fade-out-0`
+- [ ] Timing follows professional standards (500ms/300ms)
+- [ ] All animations use `ease-in-out` timing function
+- [ ] No JavaScript-based animations (CSS only)
+- [ ] Animations work smoothly across all devices
+
+---
+
 ## Component Categories & Standards 📚
 
 ### Interactive Components
@@ -257,6 +322,20 @@ const Button = ({ variant = 'primary' }) => {
 - [ ] Accessibility features function correctly
 - [ ] Performance is acceptable (no lag/jank)
 
+### Navigation-Specific Testing
+- [ ] Hamburger menu opens sidebar with smooth 500ms animation
+- [ ] Sidebar closes with smooth 300ms animation
+- [ ] Click outside sidebar closes navigation
+- [ ] ESC key closes navigation
+- [ ] All navigation links work and show active states
+- [ ] Sidebar scrolls properly with many navigation items
+- [ ] Theme toggle works from sidebar open state
+- [ ] Mobile responsiveness (280px sidebar on small screens)
+- [ ] Keyboard navigation works (tab order, enter/space activation)
+- [ ] Screen reader announces navigation state changes
+- [ ] No animation lag or jank on low-end devices
+- [ ] Navigation state persists during theme switches
+
 ### Cross-Browser Testing
 - [ ] Chrome/Chromium
 - [ ] Firefox
@@ -296,6 +375,28 @@ const Button = ({ variant = 'primary' }) => {
 ```bash
 # Run this before every commit
 npm run build && npm run lint && echo "✅ Build successful - checking for hardcoded values..." && grep -r "bg-blue\|text-white\|px-[0-9]\|py-[0-9]" src/ || echo "✅ No hardcoded values found"
+```
+
+### Navigation System Compliance Check:
+```bash
+# Check for navigation system compliance
+echo "🧭 Checking navigation system compliance..."
+
+# Check required files exist
+test -f "src/components/navigation/TopBar.tsx" && echo "✅ TopBar component found" || echo "❌ TopBar component missing"
+test -f "src/components/navigation/Sidebar.tsx" && echo "✅ Sidebar component found" || echo "❌ Sidebar component missing"
+test -f "src/components/ui/sheet.tsx" && echo "✅ Sheet component found" || echo "❌ Sheet component missing"
+
+# Check for required dependencies
+pnpm list @radix-ui/react-dialog > /dev/null && echo "✅ Radix UI Dialog installed" || echo "❌ Radix UI Dialog missing"
+pnpm list lucide-react > /dev/null && echo "✅ Lucide React installed" || echo "❌ Lucide React missing"
+pnpm list tailwindcss-animate > /dev/null && echo "✅ tailwindcss-animate installed" || echo "❌ tailwindcss-animate missing"
+
+# Check for semantic token usage in navigation
+grep -q "bg-surface-card" src/components/navigation/TopBar.tsx && echo "✅ TopBar uses semantic tokens" || echo "❌ TopBar missing semantic tokens"
+grep -q "text-text-secondary" src/components/navigation/Sidebar.tsx && echo "✅ Sidebar uses semantic tokens" || echo "❌ Sidebar missing semantic tokens"
+
+echo "🧭 Navigation compliance check complete!"
 ```
 
 ---

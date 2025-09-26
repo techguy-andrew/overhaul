@@ -23,30 +23,32 @@ interface SidebarProps {
 
 export function Sidebar({ navigation, isActive, onLinkClick, className }: SidebarProps) {
   return (
-    <nav className={cn('flex flex-col h-full p-container-padding', className)}>
-      {/* Clean Navigation Links Only */}
-      <div className="flex flex-col gap-1">
-        {navigation.map((item) => (
-          <Button
-            key={item.href}
-            variant={isActive(item.href) ? 'secondary' : 'ghost'}
-            className={cn(
-              'w-full justify-start gap-element-gap h-11',
-              !isActive(item.href) && 'text-text-secondary hover:text-text-primary'
-            )}
-            asChild
-          >
-            <Link
-              href={item.href}
-              onClick={onLinkClick}
-              aria-current={isActive(item.href) ? 'page' : undefined}
-              title={item.description}
+    <nav className={cn('flex flex-col h-full bg-surface-card', className)}>
+      {/* Navigation Links */}
+      <div className="flex-1 overflow-y-auto">
+        <div className="flex flex-col gap-1 p-element-gap">
+          {navigation.map((item) => (
+            <Button
+              key={item.href}
+              variant={isActive(item.href) ? 'secondary' : 'ghost'}
+              className={cn(
+                'w-full justify-start gap-element-gap h-11',
+                !isActive(item.href) && 'text-text-secondary hover:text-text-primary'
+              )}
+              asChild
             >
-              <item.icon className="h-4 w-4 flex-shrink-0" />
-              {item.label}
-            </Link>
-          </Button>
-        ))}
+              <Link
+                href={item.href}
+                onClick={onLinkClick}
+                aria-current={isActive(item.href) ? 'page' : undefined}
+                title={item.description}
+              >
+                <item.icon className="h-4 w-4 flex-shrink-0" />
+                {item.label}
+              </Link>
+            </Button>
+          ))}
+        </div>
       </div>
     </nav>
   )
