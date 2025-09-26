@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Menu, Home, FileText, Settings, Users, BarChart3 } from 'lucide-react'
+import { Menu, X, Home, FileText, Settings, Users, BarChart3 } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { Sidebar } from './Sidebar'
@@ -109,17 +109,17 @@ export function TopBar({ children, actions }: TopBarProps) {
         <div className="flex items-center justify-between h-16 px-container-padding">
           {/* Left Section: Navigation + Brand */}
           <div className="flex items-center gap-element-gap">
-            {/* Universal Hamburger Menu - Works same on ALL devices */}
+            {/* Universal Menu Toggle - Seamless hamburger-to-close transition */}
             <Button
               variant="ghost"
               size="sm"
-              className="px-element-gap py-element-gap"
-              onClick={() => setIsOpen(true)}
-              aria-label="Open navigation menu"
+              className="px-element-gap py-element-gap transition-all duration-200 ease-in-out"
+              onClick={() => setIsOpen(!isOpen)}
+              aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
               aria-expanded={isOpen}
               aria-controls="navigation-sidebar"
             >
-              <Menu className="h-5 w-5" />
+              {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </Button>
 
             {/* Brand */}

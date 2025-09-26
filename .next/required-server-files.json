@@ -98,7 +98,7 @@
         "transform": "lodash/{{member}}"
       }
     },
-    "outputFileTracingRoot": "/Users/andrewbarron/Documents/dev/projects/new-test/application",
+    "outputFileTracingRoot": "/Users/andrewbarron/Documents/dev/projects/overhaul/application",
     "experimental": {
       "useSkewCookie": false,
       "cacheLife": {
@@ -287,10 +287,10 @@
     "bundlePagesRouterDependencies": false,
     "configFileName": "next.config.ts",
     "turbopack": {
-      "root": "/Users/andrewbarron/Documents/dev/projects/new-test/application"
+      "root": "/Users/andrewbarron/Documents/dev/projects/overhaul/application"
     }
   },
-  "appDir": "/Users/andrewbarron/Documents/dev/projects/new-test/application",
+  "appDir": "/Users/andrewbarron/Documents/dev/projects/overhaul/application",
   "relativeAppDir": "",
   "files": [
     ".next/routes-manifest.json",
