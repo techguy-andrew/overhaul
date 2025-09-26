@@ -1,7 +1,9 @@
 'use client'
 
 import Link from 'next/link'
+import { motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
+import { createStagger, motionTransitions, interactionVariants, getReducedMotionTransition } from '@/lib/motion'
 import type { LucideIcon } from 'lucide-react'
 
 // Navigation item interface for portability
@@ -20,33 +22,70 @@ interface SidebarProps {
   className?: string
 }
 
+// Animation variants for navigation items
+const navItemVariants = {
+  hidden: {
+    opacity: 0,
+    x: -20,
+    transition: getReducedMotionTransition(motionTransitions.fast)
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: getReducedMotionTransition(motionTransitions.normal)
+  }
+}
+
+const containerVariants = createStagger(0.05)
+
 export function Sidebar({ navigation, isActive, onLinkClick, className }: SidebarProps) {
   return (
-    <nav className={cn('flex flex-col h-full bg-surface-card', className)}>
+    <motion.nav
+      className={cn('flex flex-col h-full bg-surface-card', className)}
+      initial="hidden"
+      animate="visible"
+      variants={containerVariants}
+    >
       {/* Navigation Links */}
       <div className="flex-1 overflow-y-auto">
         <div className="flex flex-col p-element-gap">
-          {navigation.map((item) => (
-            <Link
+          {navigation.map((item, index) => (
+            <motion.div
               key={item.href}
-              href={item.href}
-              onClick={onLinkClick}
-              aria-current={isActive(item.href) ? 'page' : undefined}
-              title={item.description}
-              className={cn(
-                'flex items-center gap-element-gap py-3 px-0 transition-all duration-150',
-                'hover:scale-105 active:opacity-60',
-                isActive(item.href)
-                  ? 'text-text-accent'
-                  : 'text-text-secondary hover:text-text-primary'
-              )}
+              variants={navItemVariants}
+              custom={index}
             >
-              <item.icon className="h-4 w-4 flex-shrink-0" />
-              <span>{item.label}</span>
-            </Link>
+              <Link
+                href={item.href}
+                onClick={onLinkClick}
+                aria-current={isActive(item.href) ? 'page' : undefined}
+                title={item.description}
+                className="block"
+              >
+                <motion.div
+                  className={cn(
+                    'flex items-center gap-element-gap py-3 px-0 rounded-md transition-colors duration-150',
+                    isActive(item.href)
+                      ? 'text-text-accent bg-interactive-primary/10'
+                      : 'text-text-secondary hover:text-text-primary hover:bg-interactive-secondary/50'
+                  )}
+                  whileHover={interactionVariants.hover}
+                  whileTap={interactionVariants.tap}
+                  transition={getReducedMotionTransition(motionTransitions.fast)}
+                >
+                  <motion.div
+                    whileHover={{ scale: 1.1 }}
+                    transition={getReducedMotionTransition({ duration: 0.15 })}
+                  >
+                    <item.icon className="h-4 w-4 flex-shrink-0" />
+                  </motion.div>
+                  <span className="font-medium">{item.label}</span>
+                </motion.div>
+              </Link>
+            </motion.div>
           ))}
         </div>
       </div>
-    </nav>
+    </motion.nav>
   )
 }

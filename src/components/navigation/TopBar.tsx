@@ -5,8 +5,10 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Menu, X, Home, FileText, Settings, Users, BarChart3 } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
-import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetDescription } from '@/components/ui/sheet'
+import { motion } from 'framer-motion'
+import { MotionSheet, MotionSheetContent, MotionSheetTrigger, MotionSheetTitle, MotionSheetDescription } from '@/components/ui/motion-sheet'
 import { Sidebar } from './Sidebar'
+import { interactionVariants } from '@/lib/motion'
 
 // Navigation configuration - inline for portability
 interface NavItem {
@@ -86,57 +88,57 @@ export function TopBar({ children, actions }: TopBarProps) {
   return (
     <>
       {/* TopBar Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-surface-card">
+      <header className="fixed top-0 left-0 right-0 z-70 bg-surface-card">
         <div className="flex items-center justify-between h-16 px-container-padding">
           {/* Left Section: Navigation + Brand */}
           <div className="flex items-center gap-element-gap">
-            {/* Claims App Style Sheet Navigation */}
-            <Sheet open={open} onOpenChange={setOpen}>
-              <SheetTrigger asChild>
-                <button
+            {/* Motion-powered Navigation */}
+            <MotionSheet open={open} onOpenChange={setOpen}>
+              <MotionSheetTrigger asChild>
+                <motion.button
                   className="p-0 bg-transparent border-none cursor-pointer focus:outline-none"
                   aria-label={open ? "Close navigation menu" : "Open navigation menu"}
                   aria-expanded={open}
                   aria-controls="mobile-navigation"
+                  whileHover={interactionVariants.hover}
+                  whileTap={interactionVariants.tap}
                 >
-                  {open ? (
-                    <X className="h-5 w-5 text-text-primary hover:scale-110 active:opacity-60 transition-all duration-150" />
-                  ) : (
-                    <Menu className="h-5 w-5 text-text-primary hover:scale-110 active:opacity-60 transition-all duration-150" />
-                  )}
-                </button>
-              </SheetTrigger>
+                  <motion.div
+                    initial={false}
+                    animate={{ rotate: open ? 180 : 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    {open ? (
+                      <X className="h-5 w-5 text-text-primary" />
+                    ) : (
+                      <Menu className="h-5 w-5 text-text-primary" />
+                    )}
+                  </motion.div>
+                </motion.button>
+              </MotionSheetTrigger>
 
-              <SheetContent
+              <MotionSheetContent
                 side="left"
-                className="!fixed !top-16 !bottom-0 !left-0 !z-65 !w-[280px] sm:!w-[300px] !p-0 !m-0 !bg-surface-card !shadow-none !transition-transform !duration-300 data-[state=open]:!animate-in data-[state=closed]:!animate-out data-[state=closed]:!slide-out-to-left data-[state=open]:!slide-in-from-left"
+                className="top-16 w-[280px] sm:w-[300px] p-0 border-r-interactive-secondary"
                 id="mobile-navigation"
                 hideCloseButton={true}
-                style={{
-                  background: 'var(--color-surface-card)',
-                  outline: 'none',
-                  border: 'none',
-                  borderRight: '1px solid var(--color-interactive-secondary)',
-                  boxShadow: 'none',
-                  WebkitTapHighlightColor: 'transparent'
-                }}
-                tabIndex={-1}
               >
-                <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
-                <SheetDescription className="sr-only">
+                <MotionSheetTitle className="sr-only">Navigation Menu</MotionSheetTitle>
+                <MotionSheetDescription className="sr-only">
                   Main navigation for the Application
-                </SheetDescription>
+                </MotionSheetDescription>
                 <Sidebar
                   navigation={NAVIGATION}
                   isActive={isActive}
                   onLinkClick={() => setOpen(false)}
                 />
-              </SheetContent>
-            </Sheet>
+              </MotionSheetContent>
+            </MotionSheet>
 
             {/* Brand */}
             <Link
               href={BRAND.href}
+              onClick={() => setOpen(false)}
               className="text-lg text-text-primary hover:scale-105 active:opacity-60 transition-all duration-150"
               aria-label={`${BRAND.name} - ${BRAND.description}`}
             >
