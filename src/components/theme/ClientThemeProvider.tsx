@@ -137,12 +137,11 @@ export function useClientTheme() {
 
 // Backward compatibility hook for existing ThemeToggle component
 export function useTheme() {
-  const { mode, toggleMode } = useClientTheme();
+  const { mode, toggleMode, setMode } = useClientTheme();
   return {
     theme: mode,
     setTheme: (newMode: ThemeMode) => {
       // This maintains backward compatibility with the existing ThemeToggle
-      const { setMode } = useClientTheme();
       setMode(newMode);
     },
     toggleTheme: toggleMode,

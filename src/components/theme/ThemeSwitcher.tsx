@@ -4,7 +4,7 @@ import React from 'react';
 import { Button } from '@/components/ui/Button';
 import { useClientTheme } from './ClientThemeProvider';
 import { CLIENT_THEMES, ALL_CLIENTS, type ClientBrand } from '@/lib/themes';
-import { Sun, Moon, Palette } from 'lucide-react';
+import { Sun, Moon } from 'lucide-react';
 
 interface ThemeSwitcherProps {
   showClientSelector?: boolean;

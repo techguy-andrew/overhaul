@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 import { useSearchParams, usePathname } from 'next/navigation';
 import { useClientTheme } from './ClientThemeProvider';
-import { ThemeManager, type ClientBrand, CLIENT_THEMES } from '@/lib/themes';
+import { type ClientBrand, CLIENT_THEMES } from '@/lib/themes';
 
 /**
  * Component that handles automatic client detection and theme initialization
@@ -96,15 +96,34 @@ export function useClientDetection() {
 
     detectFromRequest: (request: Request): ClientBrand | null => {
       const url = request.url;
-      const userAgent = request.headers.get('user-agent') || '';
 
-      // Use URL detection
-      const urlClient = useClientDetection().detectFromUrl(url);
-      if (urlClient) return urlClient;
+      // Use URL detection directly
+      try {
+        const urlObj = new URL(url);
 
-      // Could add additional detection logic here based on headers, etc.
+        // Check query params
+        const clientParam = urlObj.searchParams.get('client') as ClientBrand;
+        if (clientParam && CLIENT_THEMES[clientParam]) {
+          return clientParam;
+        }
 
-      return null;
+        // Check pathname
+        const pathSegments = urlObj.pathname.split('/').filter(Boolean);
+        const firstSegment = pathSegments[0];
+        if (firstSegment?.startsWith('client-') && CLIENT_THEMES[firstSegment as ClientBrand]) {
+          return firstSegment as ClientBrand;
+        }
+
+        // Check subdomain
+        const subdomain = urlObj.hostname.split('.')[0];
+        if (subdomain.startsWith('client-') && CLIENT_THEMES[subdomain as ClientBrand]) {
+          return subdomain as ClientBrand;
+        }
+
+        return null;
+      } catch {
+        return null;
+      }
     },
   };
 }

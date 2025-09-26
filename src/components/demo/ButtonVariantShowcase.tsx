@@ -123,7 +123,7 @@ export function ButtonVariantShowcase({
       {/* Usage Note */}
       <div className="mt-6 p-4 bg-surface-elevated rounded-md">
         <p className="text-xs text-text-muted">
-          <strong>Framer → Code Translation:</strong> These variants work exactly like Framer's component variants.
+          <strong>Framer → Code Translation:</strong> These variants work exactly like Framer&apos;s component variants.
           The semantic tokens automatically adapt to different client themes while maintaining consistent behavior patterns.
         </p>
       </div>
@@ -181,7 +181,7 @@ export function DynamicButtonDemo() {
             </div>
 
             <Button
-              variant={getStatusVariant(item.status) as any}
+              variant={getStatusVariant(item.status) as 'primary' | 'secondary' | 'outline' | 'ghost'}
               size="sm"
             >
               {item.status.charAt(0).toUpperCase() + item.status.slice(1)}
@@ -193,7 +193,7 @@ export function DynamicButtonDemo() {
       <div className="mt-4 p-3 bg-surface-elevated rounded-md">
         <p className="text-xs text-text-muted">
           <strong>Dynamic Variants:</strong> Button variants are determined by database values.
-          Status "active" → primary variant, "pending" → secondary, etc. This mirrors how you'd
+          Status &quot;active&quot; → primary variant, &quot;pending&quot; → secondary, etc. This mirrors how you&apos;d
           handle dynamic content in Framer with component properties.
         </p>
       </div>

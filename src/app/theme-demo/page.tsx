@@ -4,8 +4,7 @@ import React from 'react';
 import { ThemeSwitcher, ClientThemePreview } from '@/components/theme/ThemeSwitcher';
 import { ButtonVariantShowcase, DynamicButtonDemo } from '@/components/demo/ButtonVariantShowcase';
 import { useClientTheme } from '@/components/theme/ClientThemeProvider';
-import { ALL_CLIENTS, CLIENT_THEMES } from '@/lib/themes';
-import { Button } from '@/components/ui/Button';
+import { ALL_CLIENTS } from '@/lib/themes';
 import {
   Palette,
   Monitor,
@@ -20,7 +19,7 @@ import {
 } from 'lucide-react';
 
 export default function ThemeDemoPage() {
-  const { clientConfig, mode, currentTheme } = useClientTheme();
+  const { clientConfig, currentTheme } = useClientTheme();
 
   return (
     <div className="min-h-screen bg-surface-background">
@@ -150,21 +149,21 @@ export default function ThemeDemoPage() {
               Implementation Example
             </h3>
             <div className="bg-surface-background rounded-md p-4 font-mono text-sm overflow-x-auto">
-              <div className="text-text-muted mb-2">// Framer-style variants in code</div>
+              <div className="text-text-muted mb-2">{/* Framer-style variants in code */}</div>
               <div className="text-text-accent">const</div> <span className="text-text-primary">buttonVariants</span> = <span className="text-text-accent">cva</span>(<br />
-              <span className="ml-4 text-green-600">"base styles"</span>,<br />
+              <span className="ml-4 text-green-600">&quot;base styles&quot;</span>,<br />
               <span className="ml-4">{`{`}</span><br />
               <span className="ml-8 text-text-accent">variants</span>: {`{`}<br />
               <span className="ml-12 text-text-accent">variant</span>: {`{`}<br />
-              <span className="ml-16 text-text-primary">primary</span>: <span className="text-green-600">"bg-interactive-primary..."</span>,<br />
-              <span className="ml-16 text-text-primary">secondary</span>: <span className="text-green-600">"bg-interactive-secondary..."</span><br />
+              <span className="ml-16 text-text-primary">primary</span>: <span className="text-green-600">&quot;bg-interactive-primary...&quot;</span>,<br />
+              <span className="ml-16 text-text-primary">secondary</span>: <span className="text-green-600">&quot;bg-interactive-secondary...&quot;</span><br />
               <span className="ml-12">{`}`}</span><br />
               <span className="ml-8">{`}`}</span><br />
               <span className="ml-4">{`}`}</span><br />
               )
             </div>
             <p className="text-sm text-text-muted mt-3">
-              This CVA pattern mirrors Framer's component variants while using semantic tokens
+              This CVA pattern mirrors Framer&apos;s component variants while using semantic tokens
               that automatically adapt to any client theme.
             </p>
           </div>

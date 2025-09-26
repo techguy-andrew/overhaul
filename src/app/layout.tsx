@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Suspense } from "react";
 import "./globals.css";
 import { TopBar } from "@/components/navigation/TopBar";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
@@ -32,7 +33,9 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ClientThemeProvider autoDetectClient={true}>
-          <ClientThemeInitializer />
+          <Suspense fallback={null}>
+            <ClientThemeInitializer />
+          </Suspense>
           <TopBar actions={<ThemeToggle />} />
           <main className="pt-16 bg-surface-background min-h-screen">
             {children}

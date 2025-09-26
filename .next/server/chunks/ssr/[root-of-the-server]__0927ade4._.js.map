@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 3, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"","debugId":null}},
-    {"offset": {"line": 15, "column": 0}, "map": {"version":3,"sources":["file:///Users/andrewbarron/Documents/dev/projects/overhaul/application/src/app/settings/page.tsx"],"sourcesContent":["export default function Settings() {\n  return (\n    <div className=\"p-container-padding\">\n      <h1 className=\"text-3xl font-bold text-text-primary mb-component-gap\">\n        ⚙️ Settings\n      </h1>\n      <p className=\"text-text-secondary\">\n        This is the settings page demonstrating navigation between pages.\n      </p>\n    </div>\n  );\n}"],"names":[],"mappings":";;;;;;AAAe,SAAS;IACtB,qBACE,6WAAC;QAAI,WAAU;;0BACb,6WAAC;gBAAG,WAAU;0BAAwD;;;;;;0BAGtE,6WAAC;gBAAE,WAAU;0BAAsB;;;;;;;;;;;;AAKzC","debugId":null}}]
-}
