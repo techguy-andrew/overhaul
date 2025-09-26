@@ -391,7 +391,7 @@ const MotionSheetTrigger = /*#__PURE__*/ _s1(__TURBOPACK__imported__module__$5b$
         children: children
     }, void 0, false, {
         fileName: "[project]/src/components/ui/motion-sheet.tsx",
-        lineNumber: 68,
+        lineNumber: 75,
         columnNumber: 5
     }, ("TURBOPACK compile-time value", void 0));
 }, "powUW0KKxtnpB8X9GGmF7zCif5Y=", false, function() {
@@ -420,7 +420,7 @@ const MotionSheetOverlay = /*#__PURE__*/ __TURBOPACK__imported__module__$5b$proj
         onClick: ()=>onOpenChange(false)
     }, void 0, false, {
         fileName: "[project]/src/components/ui/motion-sheet.tsx",
-        lineNumber: 93,
+        lineNumber: 100,
         columnNumber: 7
     }, ("TURBOPACK compile-time value", void 0));
 }, "bPWo91MnO3CNkgnNpIx738+/kGQ=", false, function() {
@@ -496,6 +496,8 @@ const createSideVariants = (side)=>{
 const MotionSheetContent = /*#__PURE__*/ _s3(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$15$2e$5$2e$4_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["forwardRef"](_c4 = _s3((param, ref)=>{
     let { side = "right", className, children, hideCloseButton = false, onEscapeKeyDown, ...props } = param;
     _s3();
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { onDrag: _onDrag, onDragStart: _onDragStart, onDragEnd: _onDragEnd, onAnimationStart: _onAnimationStart, onAnimationEnd: _onAnimationEnd, ...safeProps } = props;
     const { open, onOpenChange } = useMotionSheet();
     const [mounted, setMounted] = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$15$2e$5$2e$4_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"](false);
     __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$15$2e$5$2e$4_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"]({
@@ -531,14 +533,14 @@ const MotionSheetContent = /*#__PURE__*/ _s3(__TURBOPACK__imported__module__$5b$
         onOpenChange
     ]);
     if (!mounted) return null;
-    const variants = createSideVariants(side);
+    const variants = createSideVariants(side !== null && side !== void 0 ? side : "right");
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$15$2e$5$2e$4_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2d$dom$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["createPortal"])(/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$15$2e$5$2e$4_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$framer$2d$motion$40$12$2e$23$2e$22_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AnimatePresence"], {
         mode: "wait",
         children: open && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$15$2e$5$2e$4_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$15$2e$5$2e$4_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
             children: [
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$15$2e$5$2e$4_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(MotionSheetOverlay, {}, void 0, false, {
                     fileName: "[project]/src/components/ui/motion-sheet.tsx",
-                    lineNumber: 196,
+                    lineNumber: 212,
                     columnNumber: 13
                 }, ("TURBOPACK compile-time value", void 0)),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$15$2e$5$2e$4_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$framer$2d$motion$40$12$2e$23$2e$22_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -551,7 +553,7 @@ const MotionSheetContent = /*#__PURE__*/ _s3(__TURBOPACK__imported__module__$5b$
                     animate: "open",
                     exit: "closed",
                     transition: (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$motion$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getReducedMotionTransition"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$motion$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motionTransitions"].springSnappy),
-                    ...props,
+                    ...safeProps,
                     children: [
                         children,
                         !hideCloseButton && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$15$2e$5$2e$4_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$framer$2d$motion$40$12$2e$23$2e$22_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].button, {
@@ -568,7 +570,7 @@ const MotionSheetContent = /*#__PURE__*/ _s3(__TURBOPACK__imported__module__$5b$
                                     className: "h-4 w-4"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/ui/motion-sheet.tsx",
-                                    lineNumber: 215,
+                                    lineNumber: 231,
                                     columnNumber: 19
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$15$2e$5$2e$4_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -576,26 +578,26 @@ const MotionSheetContent = /*#__PURE__*/ _s3(__TURBOPACK__imported__module__$5b$
                                     children: "Close"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/ui/motion-sheet.tsx",
-                                    lineNumber: 216,
+                                    lineNumber: 232,
                                     columnNumber: 19
                                 }, ("TURBOPACK compile-time value", void 0))
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/ui/motion-sheet.tsx",
-                            lineNumber: 209,
+                            lineNumber: 225,
                             columnNumber: 17
                         }, ("TURBOPACK compile-time value", void 0))
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/components/ui/motion-sheet.tsx",
-                    lineNumber: 197,
+                    lineNumber: 213,
                     columnNumber: 13
                 }, ("TURBOPACK compile-time value", void 0))
             ]
         }, void 0, true)
     }, void 0, false, {
         fileName: "[project]/src/components/ui/motion-sheet.tsx",
-        lineNumber: 193,
+        lineNumber: 209,
         columnNumber: 7
     }, ("TURBOPACK compile-time value", void 0)), document.body);
 }, "9GihROiHi4DYpzPeEYltA3Xafqo=", false, function() {
@@ -617,7 +619,7 @@ const MotionSheetHeader = (param)=>{
         ...props
     }, void 0, false, {
         fileName: "[project]/src/components/ui/motion-sheet.tsx",
-        lineNumber: 234,
+        lineNumber: 250,
         columnNumber: 3
     }, ("TURBOPACK compile-time value", void 0));
 };
@@ -631,7 +633,7 @@ const MotionSheetFooter = (param)=>{
         ...props
     }, void 0, false, {
         fileName: "[project]/src/components/ui/motion-sheet.tsx",
-        lineNumber: 246,
+        lineNumber: 262,
         columnNumber: 3
     }, ("TURBOPACK compile-time value", void 0));
 };
@@ -646,7 +648,7 @@ const MotionSheetTitle = /*#__PURE__*/ __TURBOPACK__imported__module__$5b$projec
         ...props
     }, void 0, false, {
         fileName: "[project]/src/components/ui/motion-sheet.tsx",
-        lineNumber: 261,
+        lineNumber: 277,
         columnNumber: 3
     }, ("TURBOPACK compile-time value", void 0));
 });
@@ -661,7 +663,7 @@ const MotionSheetDescription = /*#__PURE__*/ __TURBOPACK__imported__module__$5b$
         ...props
     }, void 0, false, {
         fileName: "[project]/src/components/ui/motion-sheet.tsx",
-        lineNumber: 274,
+        lineNumber: 290,
         columnNumber: 3
     }, ("TURBOPACK compile-time value", void 0));
 });

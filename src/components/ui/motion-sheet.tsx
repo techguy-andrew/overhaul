@@ -57,11 +57,18 @@ const MotionSheetTrigger = React.forwardRef<
   }
 
   if (asChild && React.isValidElement(children)) {
-    return React.cloneElement(children, {
-      onClick: handleClick,
-      className: cn(className, children.props.className),
-      ref,
-    })
+    return React.cloneElement(
+      children as React.ReactElement<{
+        onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+        className?: string;
+        ref?: React.Ref<HTMLButtonElement>;
+      }>,
+      {
+        onClick: handleClick,
+        className: cn(className, (children.props as { className?: string }).className),
+        ref,
+      }
+    )
   }
 
   return (
@@ -158,6 +165,15 @@ interface MotionSheetContentProps
 
 const MotionSheetContent = React.forwardRef<HTMLDivElement, MotionSheetContentProps>(
   ({ side = "right", className, children, hideCloseButton = false, onEscapeKeyDown, ...props }, ref) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const {
+      onDrag: _onDrag,
+      onDragStart: _onDragStart,
+      onDragEnd: _onDragEnd,
+      onAnimationStart: _onAnimationStart,
+      onAnimationEnd: _onAnimationEnd,
+      ...safeProps
+    } = props
     const { open, onOpenChange } = useMotionSheet()
     const [mounted, setMounted] = React.useState(false)
 
@@ -187,7 +203,7 @@ const MotionSheetContent = React.forwardRef<HTMLDivElement, MotionSheetContentPr
 
     if (!mounted) return null
 
-    const variants = createSideVariants(side)
+    const variants = createSideVariants(side ?? "right")
 
     return createPortal(
       <AnimatePresence mode="wait">
@@ -202,7 +218,7 @@ const MotionSheetContent = React.forwardRef<HTMLDivElement, MotionSheetContentPr
               animate="open"
               exit="closed"
               transition={getReducedMotionTransition(motionTransitions.springSnappy)}
-              {...props}
+              {...safeProps}
             >
               {children}
               {!hideCloseButton && (
