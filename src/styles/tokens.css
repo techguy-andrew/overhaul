@@ -56,6 +56,10 @@
   --color-text-muted: var(--color-gray-600);
   --color-text-accent: var(--color-blue-600);
 
+  /* Foreground Colors for Interactive Elements */
+  --color-foreground-primary: #ffffff;
+  --color-foreground-on-interactive: #ffffff;
+
   /* Spacing System */
   --space-container-padding: var(--spacing-4);
   --space-section-gap: var(--spacing-12);
@@ -86,6 +90,10 @@
   --color-text-secondary: var(--color-gray-300);
   --color-text-muted: var(--color-gray-600);
   --color-text-accent: #60a5fa;
+
+  /* Foreground Colors for Interactive Elements - Dark */
+  --color-foreground-primary: #ffffff;
+  --color-foreground-on-interactive: #ffffff;
 
   /* Legacy compatibility */
   --color-background-main: var(--color-surface-background);

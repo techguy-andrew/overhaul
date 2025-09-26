@@ -1,0 +1,3 @@
+module.exports=[93695,(a,b,c)=>{b.exports=a.x("next/dist/shared/lib/no-fallback-error.external.js",()=>require("next/dist/shared/lib/no-fallback-error.external.js"))},23710,a=>{a.n(a.i(9833))},18509,(a,b,c)=>{},34614,a=>{"use strict";a.s(["default",()=>c]);var b=a.i(65940);function c(){return(0,b.jsxs)("div",{className:"p-container-padding",children:[(0,b.jsx)("h1",{className:"text-3xl font-bold text-text-primary mb-component-gap",children:"📄 Documents"}),(0,b.jsx)("p",{className:"text-text-secondary",children:"This is the documents page demonstrating navigation between pages."})]})}}];
+
+//# sourceMappingURL=%5Broot-of-the-server%5D__836f0589._.js.map

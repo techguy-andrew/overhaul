@@ -23,7 +23,7 @@ export function ThemeToggle() {
   return (
     <button
       onClick={toggleTheme}
-      className="fixed top-4 right-4 bg-surface-card hover:bg-surface-elevated text-text-primary px-element-gap py-2 rounded-md shadow-md transition-colors border border-interactive-secondary"
+      className="bg-surface-card hover:bg-surface-elevated text-text-primary px-element-gap py-element-gap rounded-md shadow-md transition-colors border border-interactive-secondary"
     >
       {theme === 'light' ? '🌙 Dark' : '☀️ Light'}
     </button>

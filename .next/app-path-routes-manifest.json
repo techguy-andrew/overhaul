@@ -1,5 +1,9 @@
 {
   "/_not-found/page": "/_not-found",
+  "/analytics/page": "/analytics",
+  "/documents/page": "/documents",
   "/favicon.ico/route": "/favicon.ico",
-  "/page": "/"
+  "/page": "/",
+  "/settings/page": "/settings",
+  "/users/page": "/users"
 }
