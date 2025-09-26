@@ -42,6 +42,13 @@
   /* Navigation-specific semantic tokens */
   --color-surface-navigation: var(--color-surface-card);
   --color-border-navigation: var(--color-interactive-secondary);
+
+  /* Client Brand Tokens */
+  --color-brand-accent: var(--color-brand-accent);
+  --color-brand-accent-hover: var(--color-brand-accent-hover);
+  --color-brand-gradient-start: var(--color-brand-gradient-start);
+  --color-brand-gradient-end: var(--color-brand-gradient-end);
+  --color-brand-highlight: var(--color-brand-highlight);
   --color-chart-5: var(--chart-5);
   --color-chart-4: var(--chart-4);
   --color-chart-3: var(--chart-3);

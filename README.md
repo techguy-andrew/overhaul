@@ -13,7 +13,8 @@ This document establishes the unified architectural standards and development pr
 5. [Implementation Guidelines](#implementation-guidelines)
 6. [Project Setup](#project-setup)
 7. [Best Practices](#best-practices)
-8. [Migration Guide](#migration-guide)
+8. [Multi-Client Theming System](#multi-client-theming-system)
+9. [Migration Guide](#migration-guide)
 
 ---
 
@@ -703,6 +704,314 @@ export function ProductCard({ product, onAddToCart }: ProductCardProps) {
   );
 }
 ```
+
+---
+
+## Multi-Client Theming System
+
+### Enterprise White-Labeling Architecture
+
+Our multi-client theming system extends the semantic design token architecture to support unlimited client brands without any code changes. This system enables true white-labeling at scale.
+
+### Core Architecture
+
+#### Theme Structure
+
+The system uses a hybrid approach that combines client brands with light/dark modes:
+
+```css
+/* Base semantic tokens (unchanged) */
+:root {
+  --color-interactive-primary: #3b82f6;
+  --color-text-primary: #1f2937;
+}
+
+/* Client-specific overrides */
+[data-theme="client-b"] {
+  --color-interactive-primary: #10b981; /* Emerald brand */
+}
+
+[data-theme="client-c"] {
+  --color-interactive-primary: #8b5cf6; /* Violet brand */
+}
+
+/* Hybrid themes (client + mode) */
+[data-theme="client-b-dark"] {
+  --color-interactive-primary: #34d399; /* Emerald dark mode */
+  --color-surface-background: #064e3b;
+}
+```
+
+### Implementation Guide
+
+#### 1. Client Theme Configuration
+
+```typescript
+// src/lib/themes.ts
+export type ClientBrand = 'client-a' | 'client-b' | 'client-c' | 'client-d';
+export type ThemeMode = 'light' | 'dark';
+
+export const CLIENT_THEMES: Record<ClientBrand, ClientThemeConfig> = {
+  'client-a': {
+    id: 'client-a',
+    name: 'Azure Professional',
+    primaryColor: '#3b82f6',
+  },
+  'client-b': {
+    id: 'client-b',
+    name: 'Emerald Enterprise',
+    primaryColor: '#10b981',
+  },
+  // ... additional clients
+}
+```
+
+#### 2. Theme Provider Setup
+
+```typescript
+// app/layout.tsx
+import { ClientThemeProvider } from '@/components/theme/ClientThemeProvider';
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en">
+      <body>
+        <ClientThemeProvider autoDetectClient={true}>
+          <ClientThemeInitializer />
+          {children}
+        </ClientThemeProvider>
+      </body>
+    </html>
+  );
+}
+```
+
+#### 3. Automatic Client Detection
+
+The system automatically detects which client theme to apply through multiple methods:
+
+```typescript
+// Priority order:
+// 1. URL parameter: ?client=client-b
+// 2. Path-based: /client-b/dashboard
+// 3. Subdomain: client-b.yourapp.com
+// 4. Environment variable: NEXT_PUBLIC_DEFAULT_CLIENT
+
+export class ThemeManager {
+  static detectClient(): ClientBrand {
+    // URL parameter detection
+    const urlParams = new URLSearchParams(window.location.search);
+    const clientParam = urlParams.get('client') as ClientBrand;
+    if (clientParam && CLIENT_THEMES[clientParam]) {
+      return clientParam;
+    }
+
+    // Subdomain detection
+    const subdomain = window.location.hostname.split('.')[0];
+    if (subdomain.startsWith('client-') && CLIENT_THEMES[subdomain as ClientBrand]) {
+      return subdomain as ClientBrand;
+    }
+
+    return 'client-a'; // Default fallback
+  }
+}
+```
+
+#### 4. Theme Switching Components
+
+```typescript
+// components/theme/ThemeSwitcher.tsx
+export function ThemeSwitcher() {
+  const { client, mode, setClient, toggleMode } = useClientTheme();
+
+  return (
+    <div className="space-y-4">
+      {/* Client Brand Selector */}
+      <div className="flex gap-2">
+        {ALL_CLIENTS.map((clientId) => (
+          <Button
+            key={clientId}
+            variant={client === clientId ? 'primary' : 'outline'}
+            onClick={() => setClient(clientId)}
+          >
+            {CLIENT_THEMES[clientId].name}
+          </Button>
+        ))}
+      </div>
+
+      {/* Light/Dark Toggle */}
+      <Button variant="outline" onClick={toggleMode}>
+        {mode === 'light' ? '🌙 Dark Mode' : '☀️ Light Mode'}
+      </Button>
+    </div>
+  );
+}
+```
+
+### Component Integration
+
+Components automatically adapt to all client themes without any code changes:
+
+```typescript
+// components/ui/Button.tsx (unchanged!)
+const buttonVariants = cva(
+  "inline-flex items-center justify-center",
+  {
+    variants: {
+      variant: {
+        // These semantic tokens automatically adapt to any client theme
+        primary: "bg-interactive-primary text-foreground-on-interactive hover:bg-interactive-primary-hover",
+        secondary: "bg-interactive-secondary text-text-primary hover:bg-interactive-secondary-hover",
+      },
+    },
+  }
+)
+
+// Usage (works with any client theme)
+<Button variant="primary">Submit</Button>
+```
+
+### Framer → Code Translation
+
+This system maintains the exact same mental model as Framer's component variants:
+
+| Framer Concept | Multi-Client Implementation |
+|---|---|
+| Component Variants | CVA variants with semantic tokens |
+| Theme Override | `[data-theme]` CSS selectors |
+| Property Panel | TypeScript props interface |
+| Design Tokens | CSS custom properties |
+| Auto Layout | Semantic spacing tokens |
+
+### Adding New Clients
+
+Adding a new client requires only CSS - no component changes:
+
+```css
+/* Step 1: Add client theme in tokens.css */
+[data-theme="client-e"] {
+  --color-interactive-primary: #f59e0b; /* Orange brand */
+  --color-text-accent: #f59e0b;
+  --color-surface-background: #fffbeb;
+}
+
+[data-theme="client-e-dark"] {
+  --color-interactive-primary: #fbbf24; /* Orange dark */
+  --color-surface-background: #78350f;
+}
+```
+
+```typescript
+// Step 2: Add to theme configuration
+export const CLIENT_THEMES = {
+  // ... existing clients
+  'client-e': {
+    id: 'client-e',
+    name: 'Orange Finance',
+    primaryColor: '#f59e0b',
+  },
+} as const;
+```
+
+That's it! All existing components automatically work with the new client theme.
+
+### Production Deployment Strategies
+
+#### Strategy 1: Multi-Tenant Single Deployment
+```bash
+# Single app serving all clients with auto-detection
+https://yourapp.com?client=client-b
+https://client-b.yourapp.com
+https://yourapp.com/client-b/dashboard
+```
+
+#### Strategy 2: Dedicated Client Deployments
+```bash
+# Environment-based client selection
+NEXT_PUBLIC_DEFAULT_CLIENT=client-b
+
+# Separate deployments per client
+https://client-b-app.vercel.app
+https://client-c-app.vercel.app
+```
+
+#### Strategy 3: Path-Based Routing
+```bash
+# Next.js dynamic routing
+/[client]/dashboard → /client-b/dashboard
+/[client]/settings → /client-c/settings
+```
+
+### Performance Considerations
+
+- **Zero JavaScript Required**: Theme switching uses CSS custom properties
+- **Minimal Bundle Impact**: Only adds ~2KB for theme management
+- **Runtime Theme Switching**: Instant theme changes without page reload
+- **SSR Compatible**: Server-side client detection supported
+
+### Testing Multi-Client Themes
+
+```typescript
+// Test utility for visual regression testing
+export function TestAllThemes({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="grid grid-cols-2 gap-4">
+      {ALL_CLIENTS.map(client => (
+        <div key={client} data-theme={client} className="p-4 border">
+          <h3>{CLIENT_THEMES[client].name}</h3>
+          {children}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// Usage in Storybook or test environments
+<TestAllThemes>
+  <Button variant="primary">Test Button</Button>
+  <Card>Test Card</Card>
+</TestAllThemes>
+```
+
+### Migration from Single-Theme Apps
+
+1. **Assess Current Architecture**: Identify hardcoded theme values
+2. **Implement Base Token System**: Convert to semantic tokens first
+3. **Add Client Configuration**: Define client theme mappings
+4. **Setup Theme Provider**: Wrap app with ClientThemeProvider
+5. **Test Theme Switching**: Verify all components adapt correctly
+6. **Deploy Multi-Client**: Choose deployment strategy
+
+### File Structure
+
+```
+src/
+├── components/
+│   ├── theme/
+│   │   ├── ClientThemeProvider.tsx    # Main theme context
+│   │   ├── ThemeSwitcher.tsx         # UI switching components
+│   │   └── ClientThemeInitializer.tsx # Auto-detection logic
+│   └── ui/
+│       └── Button.tsx                # Unchanged - auto-adapts
+├── lib/
+│   └── themes.ts                     # Theme configuration & utilities
+├── styles/
+│   ├── tokens.css                    # Multi-client token definitions
+│   └── globals.css                   # Tailwind integration
+└── app/
+    ├── layout.tsx                    # Theme provider setup
+    └── theme-demo/                   # Live demonstration page
+        └── page.tsx
+```
+
+### Demo and Documentation
+
+- **Live Demo**: Visit `/theme-demo` to see all client themes in action
+- **Component Showcase**: See how all variants adapt across themes
+- **Framer Translation Guide**: Complete guide in `framer-translation.md`
+- **Compliance Checklist**: Verification checklist in `COMPLIANCE_CHECKLIST.md`
+
+This multi-client theming system delivers enterprise-grade white-labeling capabilities while maintaining the intuitive Framer-to-code workflow that designers and developers both understand.
 
 ---
 

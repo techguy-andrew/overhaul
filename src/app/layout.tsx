@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { TopBar } from "@/components/navigation/TopBar";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
+import { ClientThemeProvider } from "@/components/theme/ClientThemeProvider";
+import { ClientThemeInitializer } from "@/components/theme/ClientThemeInitializer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,10 +31,13 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <TopBar actions={<ThemeToggle />} />
-        <main className="pt-16 bg-surface-background min-h-screen">
-          {children}
-        </main>
+        <ClientThemeProvider autoDetectClient={true}>
+          <ClientThemeInitializer />
+          <TopBar actions={<ThemeToggle />} />
+          <main className="pt-16 bg-surface-background min-h-screen">
+            {children}
+          </main>
+        </ClientThemeProvider>
       </body>
     </html>
   );

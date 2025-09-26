@@ -69,6 +69,14 @@
   /* Legacy tokens for compatibility */
   --color-background-main: var(--color-surface-background);
   --color-text-heading: var(--color-text-primary);
+
+  /* Client-Specific Brand Tokens (Default/Client A) */
+  --color-brand-accent: var(--color-interactive-primary);
+  --color-brand-accent-hover: var(--color-interactive-primary-hover);
+  --color-brand-gradient-start: var(--color-interactive-primary);
+  --color-brand-gradient-end: #60a5fa;
+  --color-brand-highlight: rgba(59, 130, 246, 0.1);
+  --brand-logo-filter: brightness(1) saturate(1);
 }
 
 [data-theme="dark"] {
@@ -98,4 +106,234 @@
   /* Legacy compatibility */
   --color-background-main: var(--color-surface-background);
   --color-text-heading: var(--color-text-primary);
+}
+
+/* ========================================
+ * CLIENT BRAND THEMES - Light Mode
+ * ======================================== */
+
+/* Client A - Azure Professional (Default remains unchanged for backward compatibility) */
+[data-theme="client-a"], [data-theme="client-a-light"] {
+  /* Uses existing light theme values - no changes needed for backward compatibility */
+}
+
+/* Client B - Emerald Enterprise */
+[data-theme="client-b"], [data-theme="client-b-light"] {
+  /* Brand Color Overrides */
+  --color-interactive-primary: #10b981;
+  --color-interactive-primary-hover: #059669;
+  --color-text-accent: #10b981;
+
+  /* Client-specific surface tinting */
+  --color-surface-background: #f0fdf4;
+  --color-surface-card: #ffffff;
+  --color-surface-elevated: #ecfdf5;
+
+  /* Maintain existing secondary/danger colors */
+  --color-interactive-secondary: var(--color-gray-200);
+  --color-interactive-secondary-hover: var(--color-gray-300);
+  --color-interactive-danger: var(--color-red-500);
+  --color-interactive-danger-hover: var(--color-red-600);
+
+  /* Client B Specific Brand Tokens */
+  --color-brand-accent: #10b981;
+  --color-brand-accent-hover: #059669;
+  --color-brand-gradient-start: #10b981;
+  --color-brand-gradient-end: #34d399;
+  --color-brand-highlight: rgba(16, 185, 129, 0.1);
+  --brand-logo-filter: hue-rotate(110deg) saturate(1.2);
+}
+
+/* Client C - Violet Creative */
+[data-theme="client-c"], [data-theme="client-c-light"] {
+  /* Brand Color Overrides */
+  --color-interactive-primary: #8b5cf6;
+  --color-interactive-primary-hover: #7c3aed;
+  --color-text-accent: #8b5cf6;
+
+  /* Client-specific surface tinting */
+  --color-surface-background: #faf5ff;
+  --color-surface-card: #ffffff;
+  --color-surface-elevated: #f3e8ff;
+
+  /* Maintain existing secondary/danger colors */
+  --color-interactive-secondary: var(--color-gray-200);
+  --color-interactive-secondary-hover: var(--color-gray-300);
+  --color-interactive-danger: var(--color-red-500);
+  --color-interactive-danger-hover: var(--color-red-600);
+
+  /* Client C Specific Brand Tokens */
+  --color-brand-accent: #8b5cf6;
+  --color-brand-accent-hover: #7c3aed;
+  --color-brand-gradient-start: #8b5cf6;
+  --color-brand-gradient-end: #a78bfa;
+  --color-brand-highlight: rgba(139, 92, 246, 0.1);
+  --brand-logo-filter: hue-rotate(270deg) saturate(1.3);
+}
+
+/* Client D - Amber Finance */
+[data-theme="client-d"], [data-theme="client-d-light"] {
+  /* Brand Color Overrides */
+  --color-interactive-primary: #f59e0b;
+  --color-interactive-primary-hover: #d97706;
+  --color-text-accent: #f59e0b;
+
+  /* Client-specific surface tinting */
+  --color-surface-background: #fffbeb;
+  --color-surface-card: #ffffff;
+  --color-surface-elevated: #fef3c7;
+
+  /* Maintain existing secondary/danger colors */
+  --color-interactive-secondary: var(--color-gray-200);
+  --color-interactive-secondary-hover: var(--color-gray-300);
+  --color-interactive-danger: var(--color-red-500);
+  --color-interactive-danger-hover: var(--color-red-600);
+
+  /* Client D Specific Brand Tokens */
+  --color-brand-accent: #f59e0b;
+  --color-brand-accent-hover: #d97706;
+  --color-brand-gradient-start: #f59e0b;
+  --color-brand-gradient-end: #fbbf24;
+  --color-brand-highlight: rgba(245, 158, 11, 0.1);
+  --brand-logo-filter: hue-rotate(45deg) saturate(1.1);
+}
+
+/* ========================================
+ * CLIENT BRAND THEMES - Dark Mode
+ * ======================================== */
+
+/* Client A - Azure Professional Dark (Default) */
+[data-theme="client-a-dark"] {
+  /* Uses existing dark theme values */
+  --color-interactive-primary: #60a5fa;
+  --color-interactive-primary-hover: #3b82f6;
+  --color-interactive-secondary: var(--color-gray-700);
+  --color-interactive-secondary-hover: var(--color-gray-600);
+  --color-interactive-danger: #f87171;
+  --color-interactive-danger-hover: #ef4444;
+
+  --color-surface-background: var(--color-gray-900);
+  --color-surface-card: var(--color-gray-800);
+  --color-surface-elevated: var(--color-gray-700);
+
+  --color-text-primary: var(--color-gray-100);
+  --color-text-secondary: var(--color-gray-300);
+  --color-text-muted: var(--color-gray-600);
+  --color-text-accent: #60a5fa;
+
+  --color-foreground-primary: #ffffff;
+  --color-foreground-on-interactive: #ffffff;
+
+  /* Client A Dark Brand Tokens */
+  --color-brand-accent: #60a5fa;
+  --color-brand-accent-hover: #3b82f6;
+  --color-brand-gradient-start: #60a5fa;
+  --color-brand-gradient-end: #93c5fd;
+  --color-brand-highlight: rgba(96, 165, 250, 0.15);
+  --brand-logo-filter: brightness(1.2) saturate(1);
+}
+
+/* Client B - Emerald Enterprise Dark */
+[data-theme="client-b-dark"] {
+  /* Brand Color Overrides - Dark */
+  --color-interactive-primary: #34d399;
+  --color-interactive-primary-hover: #10b981;
+  --color-text-accent: #34d399;
+
+  /* Dark surfaces with subtle brand tint */
+  --color-surface-background: #064e3b;
+  --color-surface-card: #065f46;
+  --color-surface-elevated: #047857;
+
+  /* Dark theme text hierarchy */
+  --color-text-primary: var(--color-gray-100);
+  --color-text-secondary: var(--color-gray-300);
+  --color-text-muted: var(--color-gray-600);
+
+  /* Maintain existing secondary/danger colors for dark */
+  --color-interactive-secondary: var(--color-gray-700);
+  --color-interactive-secondary-hover: var(--color-gray-600);
+  --color-interactive-danger: #f87171;
+  --color-interactive-danger-hover: #ef4444;
+
+  --color-foreground-primary: #ffffff;
+  --color-foreground-on-interactive: #ffffff;
+
+  /* Client B Dark Brand Tokens */
+  --color-brand-accent: #34d399;
+  --color-brand-accent-hover: #10b981;
+  --color-brand-gradient-start: #34d399;
+  --color-brand-gradient-end: #6ee7b7;
+  --color-brand-highlight: rgba(52, 211, 153, 0.15);
+  --brand-logo-filter: hue-rotate(110deg) saturate(1.2) brightness(1.1);
+}
+
+/* Client C - Violet Creative Dark */
+[data-theme="client-c-dark"] {
+  /* Brand Color Overrides - Dark */
+  --color-interactive-primary: #a78bfa;
+  --color-interactive-primary-hover: #8b5cf6;
+  --color-text-accent: #a78bfa;
+
+  /* Dark surfaces with subtle brand tint */
+  --color-surface-background: #581c87;
+  --color-surface-card: #6b21a8;
+  --color-surface-elevated: #7c3aed;
+
+  /* Dark theme text hierarchy */
+  --color-text-primary: var(--color-gray-100);
+  --color-text-secondary: var(--color-gray-300);
+  --color-text-muted: var(--color-gray-600);
+
+  /* Maintain existing secondary/danger colors for dark */
+  --color-interactive-secondary: var(--color-gray-700);
+  --color-interactive-secondary-hover: var(--color-gray-600);
+  --color-interactive-danger: #f87171;
+  --color-interactive-danger-hover: #ef4444;
+
+  --color-foreground-primary: #ffffff;
+  --color-foreground-on-interactive: #ffffff;
+
+  /* Client C Dark Brand Tokens */
+  --color-brand-accent: #a78bfa;
+  --color-brand-accent-hover: #8b5cf6;
+  --color-brand-gradient-start: #a78bfa;
+  --color-brand-gradient-end: #c4b5fd;
+  --color-brand-highlight: rgba(167, 139, 250, 0.15);
+  --brand-logo-filter: hue-rotate(270deg) saturate(1.3) brightness(1.2);
+}
+
+/* Client D - Amber Finance Dark */
+[data-theme="client-d-dark"] {
+  /* Brand Color Overrides - Dark */
+  --color-interactive-primary: #fbbf24;
+  --color-interactive-primary-hover: #f59e0b;
+  --color-text-accent: #fbbf24;
+
+  /* Dark surfaces with subtle brand tint */
+  --color-surface-background: #78350f;
+  --color-surface-card: #92400e;
+  --color-surface-elevated: #b45309;
+
+  /* Dark theme text hierarchy */
+  --color-text-primary: var(--color-gray-100);
+  --color-text-secondary: var(--color-gray-300);
+  --color-text-muted: var(--color-gray-600);
+
+  /* Maintain existing secondary/danger colors for dark */
+  --color-interactive-secondary: var(--color-gray-700);
+  --color-interactive-secondary-hover: var(--color-gray-600);
+  --color-interactive-danger: #f87171;
+  --color-interactive-danger-hover: #ef4444;
+
+  --color-foreground-primary: #ffffff;
+  --color-foreground-on-interactive: #ffffff;
+
+  /* Client D Dark Brand Tokens */
+  --color-brand-accent: #fbbf24;
+  --color-brand-accent-hover: #f59e0b;
+  --color-brand-gradient-start: #fbbf24;
+  --color-brand-gradient-end: #fde047;
+  --color-brand-highlight: rgba(251, 191, 36, 0.15);
+  --brand-logo-filter: hue-rotate(45deg) saturate(1.1) brightness(1.1);
 }

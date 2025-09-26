@@ -3,7 +3,6 @@
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
 import type { LucideIcon } from 'lucide-react'
-import { Button } from '@/components/ui/Button'
 
 // Navigation item interface for portability
 interface NavItem {
@@ -26,27 +25,25 @@ export function Sidebar({ navigation, isActive, onLinkClick, className }: Sideba
     <nav className={cn('flex flex-col h-full bg-surface-card', className)}>
       {/* Navigation Links */}
       <div className="flex-1 overflow-y-auto">
-        <div className="flex flex-col gap-1 p-element-gap">
+        <div className="flex flex-col p-element-gap">
           {navigation.map((item) => (
-            <Button
+            <Link
               key={item.href}
-              variant={isActive(item.href) ? 'secondary' : 'ghost'}
+              href={item.href}
+              onClick={onLinkClick}
+              aria-current={isActive(item.href) ? 'page' : undefined}
+              title={item.description}
               className={cn(
-                'w-full justify-start gap-element-gap h-11',
-                !isActive(item.href) && 'text-text-secondary hover:text-text-primary'
+                'flex items-center gap-element-gap py-3 px-0 transition-all duration-150',
+                'hover:scale-105 active:opacity-60',
+                isActive(item.href)
+                  ? 'text-text-accent'
+                  : 'text-text-secondary hover:text-text-primary'
               )}
-              asChild
             >
-              <Link
-                href={item.href}
-                onClick={onLinkClick}
-                aria-current={isActive(item.href) ? 'page' : undefined}
-                title={item.description}
-              >
-                <item.icon className="h-4 w-4 flex-shrink-0" />
-                {item.label}
-              </Link>
-            </Button>
+              <item.icon className="h-4 w-4 flex-shrink-0" />
+              <span>{item.label}</span>
+            </Link>
           ))}
         </div>
       </div>
