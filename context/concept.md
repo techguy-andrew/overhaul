@@ -70,7 +70,7 @@ import './styles/globals.css'; // Layer 2: Global styles and layout utilities
 // ... RootLayout Component
 ```
 
-**Professional Organization:** All global styling architecture is consolidated in `/src/app/styles/` for better maintainability and team collaboration.\n\n**Final Professional File Structure:**\n```\n/src/app/\n├── layout.tsx                     (Next.js root layout - imports from styles/)\n├── page.tsx                       (pages use global layout utilities)\n├── styles/                        (consolidated styling architecture)\n│   ├── design-tokens.css          (Layer 1: Design system foundation)\n│   └── globals.css                (Layer 2: Global styles & utilities)\n└── components/card/\n    ├── Card.tsx                   (component files)\n    └── Card.module.css            (Layer 3: Component-specific styles)\n```\n\nThis structure follows professional development team practices and ensures scalable CSS architecture management."
+**Professional Organization:** All global styling architecture is consolidated in `/src/app/styles/` for better maintainability and team collaboration.\n\n**Final Professional File Structure:**\n```\n/src/app/\n├── layout.tsx                     (Next.js root layout - imports from styles/)\n├── page.tsx                       (pages use global layout utilities)\n├── styles/                        (consolidated styling architecture)\n│   ├── design-tokens.css          (Layer 1: Design system foundation)\n│   └── globals.css                (Layer 2: Global styles & utilities)\n└── components/card/\n    ├── card.tsx                   (component files)\n    └── card.module.css            (Layer 3: Component-specific styles)\n```\n\nThis structure follows professional development team practices and ensures scalable CSS architecture management."
 
 ### 2.3. Component Styles (The Scoped Layer)
 
@@ -84,8 +84,8 @@ import './styles/globals.css'; // Layer 2: Global styles and layout utilities
 **Example Co-location:**
 `/src/app/components/card/`
 
-  * $\text{Card.tsx}$ (Component file)
-  * $\text{Card.module.css}$ (Co-located styles for unique card styling)
+  * $\text{card.tsx}$ (Component file)
+  * $\text{card.module.css}$ (Co-located styles for unique card styling)
 
 -----
 
@@ -98,7 +98,7 @@ Component styles **must** reference a defined $\text{CSS}$ **Variable** for all 
 **Required:**
 
 ```css
-/* Card.module.css */
+/* card.module.css */
 .card {
   border-radius: var(--radius-md); 
   padding: var(--space-4); /* Use token for spacing */
@@ -121,7 +121,7 @@ Component variations (e.g., `primary`, `secondary`, `small`, `large`) **must** b
 **CSS Module Example:**
 
 ```css
-/* Button.module.css */
+/* button.module.css */
 .button { /* Base styles */ }
 
 .secondary { /* Variant override */
@@ -133,8 +133,8 @@ Component variations (e.g., `primary`, `secondary`, `small`, `large`) **must** b
 **Component ($\text{.tsx}$) Example:**
 
 ```tsx
-// Button.tsx
-import styles from './Button.module.css';
+// button.tsx
+import styles from './button.module.css';
 
 interface ButtonProps {
   variant?: 'primary' | 'secondary';
