@@ -1,0 +1,26 @@
+/*
+  GLOBALS - C-MOD/VAR Implementation
+
+  CSS reset and foundational styles.
+  References design tokens exclusively.
+*/
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--font-geist-sans), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: var(--color-text);
+  background: var(--color-background);
+  font-size: var(--text-fluid);
+  line-height: 1.5;
+}

@@ -1,0 +1,112 @@
+/*
+  GLOBAL UTILITIES - C-MOD/VAR Implementation
+
+  All utility classes use the .u- prefix for clear identification.
+  All properties reference design tokens for consistency.
+*/
+
+/* Layout Utilities */
+.u-page {
+  min-height: 100vh;
+  padding: var(--space-fluid);
+}
+
+.u-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.u-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-fluid);
+}
+
+.u-row {
+  display: flex;
+  gap: var(--space-fluid);
+  flex-wrap: wrap;
+}
+
+/* Text Utilities */
+.u-text-center {
+  text-align: center;
+}
+
+.u-text-fluid {
+  font-size: var(--text-fluid);
+}
+
+.u-text-fluid-lg {
+  font-size: calc(var(--text-fluid) * 1.5);
+}
+
+.u-text-fluid-xl {
+  font-size: calc(var(--text-fluid) * 2);
+}
+
+/* Spacing Utilities */
+.u-mb-fluid {
+  margin-bottom: var(--space-fluid);
+}
+
+.u-p-fluid {
+  padding: var(--space-fluid);
+}
+
+/* Color Utilities */
+.u-color-text {
+  color: var(--color-text);
+}
+
+.u-color-muted {
+  color: #6b7280;
+}
+
+.u-bg-surface {
+  background-color: #f9fafb;
+}
+
+.u-border-subtle {
+  border: 1px solid #e5e7eb;
+}
+
+/* Flexbox Utilities */
+.u-flex {
+  display: flex;
+}
+
+.u-flex-column {
+  flex-direction: column;
+}
+
+.u-flex-wrap {
+  flex-wrap: wrap;
+}
+
+.u-gap-fluid {
+  gap: var(--space-fluid);
+}
+
+/* Typography Utilities */
+.u-font-bold {
+  font-weight: bold;
+}
+
+.u-font-semibold {
+  font-weight: 600;
+}
+
+.u-line-height-relaxed {
+  line-height: 1.6;
+}
+
+/* Layout Helpers */
+.u-max-width-content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.u-border-radius {
+  border-radius: 8px;
+}

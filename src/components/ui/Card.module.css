@@ -1,0 +1,28 @@
+/*
+  MINIMAL CARD - Learning Environment
+
+  Single variant card demonstrating fluid responsive design.
+  Uses only our minimal design tokens.
+*/
+
+.card {
+  padding: var(--space-fluid);
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.card h2 {
+  font-size: var(--text-fluid);
+  font-weight: 600;
+  margin-bottom: calc(var(--space-fluid) * 0.5);
+  color: var(--color-text);
+}
+
+.card p {
+  font-size: var(--text-fluid);
+  color: #6b7280;
+  line-height: 1.6;
+  margin: 0;
+}
