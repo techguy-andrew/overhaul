@@ -1,21 +1,24 @@
 .card {
   border-radius: var(--radius-lg);
-  padding: var(--space-6);
+  padding: var(--space-container-md);
   transition: var(--transition-shadow);
-  max-width: 24rem;
+  width: var(--intrinsic-fill);
+  min-width: 0;
 }
 
 .card h2 {
-  font-size: var(--text-xl);
+  font-size: var(--text-fluid-xl);
   font-weight: var(--font-semibold);
-  margin-bottom: var(--space-3);
+  margin-bottom: var(--space-container-xs);
   line-height: var(--leading-tight);
+  text-wrap: balance;
 }
 
 .card p {
-  font-size: var(--text-base);
+  font-size: var(--text-fluid-base);
   line-height: var(--leading-normal);
   margin: 0;
+  text-wrap: pretty;
 }
 
 .primary {
@@ -53,4 +56,35 @@
 .secondary:hover {
   background: var(--color-background);
   box-shadow: var(--shadow-sm);
+}
+
+/* Size Variants - Container Relative */
+.sm {
+  padding: var(--space-container-xs);
+}
+
+.sm h2 {
+  font-size: var(--text-fluid-lg);
+  margin-bottom: calc(var(--space-container-xs) * 0.5);
+}
+
+.sm p {
+  font-size: var(--text-fluid-sm);
+}
+
+.md {
+  padding: var(--space-container-md);
+}
+
+.lg {
+  padding: var(--space-container-lg);
+}
+
+.lg h2 {
+  font-size: var(--text-fluid-2xl);
+  margin-bottom: var(--space-container-sm);
+}
+
+.lg p {
+  font-size: var(--text-fluid-lg);
 }

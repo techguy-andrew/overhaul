@@ -2,15 +2,18 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: var(--space-3) var(--space-4);
+  padding: var(--space-container-xs) var(--space-container-sm);
   border-radius: var(--radius-md);
-  font-size: var(--text-base);
+  font-size: var(--text-fluid-base);
   font-weight: var(--font-medium);
   transition: var(--transition-all);
   cursor: pointer;
   border: none;
   font-family: inherit;
   text-decoration: none;
+  width: var(--intrinsic-fit);
+  min-width: 0;
+  text-wrap: nowrap;
 }
 
 .button:disabled {
@@ -35,4 +38,28 @@
 
 .secondary:hover:not(:disabled) {
   background: var(--color-muted);
+}
+
+/* Size Variants - Container Relative */
+.sm {
+  padding: calc(var(--space-container-xs) * 0.7) var(--space-container-xs);
+  font-size: var(--text-fluid-sm);
+  border-radius: var(--radius);
+}
+
+.md {
+  padding: var(--space-container-xs) var(--space-container-sm);
+  font-size: var(--text-fluid-base);
+}
+
+.lg {
+  padding: var(--space-container-sm) var(--space-container-md);
+  font-size: var(--text-fluid-lg);
+  border-radius: var(--radius-lg);
+}
+
+/* Full Width Variant */
+.full {
+  width: var(--intrinsic-fill);
+  justify-content: center;
 }

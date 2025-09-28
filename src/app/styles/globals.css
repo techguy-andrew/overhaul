@@ -392,3 +392,60 @@ a:hover {
 .my-4 { margin-top: var(--space-4); margin-bottom: var(--space-4); }
 .my-6 { margin-top: var(--space-6); margin-bottom: var(--space-6); }
 .my-8 { margin-top: var(--space-8); margin-bottom: var(--space-8); }
+
+/* Intrinsic Sizing Utilities */
+.w-min { width: var(--intrinsic-min); }
+.w-max { width: var(--intrinsic-max); }
+.w-fit { width: var(--intrinsic-fit); }
+.w-fill { width: var(--intrinsic-fill); }
+
+.h-min { height: var(--intrinsic-min); }
+.h-max { height: var(--intrinsic-max); }
+.h-fit { height: var(--intrinsic-fit); }
+.h-fill { height: var(--intrinsic-fill); }
+
+/* Fluid Sizing Utilities */
+.size-xs { width: var(--size-xs); }
+.size-sm { width: var(--size-sm); }
+.size-md { width: var(--size-md); }
+.size-lg { width: var(--size-lg); }
+.size-xl { width: var(--size-xl); }
+.size-2xl { width: var(--size-2xl); }
+.size-3xl { width: var(--size-3xl); }
+.size-4xl { width: var(--size-4xl); }
+.size-5xl { width: var(--size-5xl); }
+
+/* Container-Relative Gap Utilities */
+.gap-container-xs { gap: var(--space-container-xs); }
+.gap-container-sm { gap: var(--space-container-sm); }
+.gap-container-md { gap: var(--space-container-md); }
+.gap-container-lg { gap: var(--space-container-lg); }
+.gap-container-xl { gap: var(--space-container-xl); }
+
+/* Fluid Typography Utilities */
+.text-fluid-xs { font-size: var(--text-fluid-xs); }
+.text-fluid-sm { font-size: var(--text-fluid-sm); }
+.text-fluid-base { font-size: var(--text-fluid-base); }
+.text-fluid-lg { font-size: var(--text-fluid-lg); }
+.text-fluid-xl { font-size: var(--text-fluid-xl); }
+.text-fluid-2xl { font-size: var(--text-fluid-2xl); }
+.text-fluid-3xl { font-size: var(--text-fluid-3xl); }
+.text-fluid-4xl { font-size: var(--text-fluid-4xl); }
+
+/* Text Wrapping and Content Utilities */
+.text-wrap { text-wrap: wrap; }
+.text-balance { text-wrap: balance; }
+.text-pretty { text-wrap: pretty; }
+
+/* Aspect Ratio Utilities */
+.aspect-square { aspect-ratio: 1 / 1; }
+.aspect-video { aspect-ratio: 16 / 9; }
+.aspect-photo { aspect-ratio: 4 / 3; }
+.aspect-wide { aspect-ratio: 21 / 9; }
+
+/* Container-Aware Padding */
+.p-container-xs { padding: var(--space-container-xs); }
+.p-container-sm { padding: var(--space-container-sm); }
+.p-container-md { padding: var(--space-container-md); }
+.p-container-lg { padding: var(--space-container-lg); }
+.p-container-xl { padding: var(--space-container-xl); }
