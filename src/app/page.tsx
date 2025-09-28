@@ -7,7 +7,7 @@ export default function Home() {
         <div className="u-stack">
           <div className="u-text-center">
             <h1 className="u-text-fluid-xl u-font-bold u-mb-fluid">
-              C-MOD/VAR Standard: Complete Beginner's Guide
+              C-MOD/VAR Standard: Complete Beginner&apos;s Guide
             </h1>
             <p className="u-text-fluid u-color-muted u-max-width-content">
               Learn the three-layer architecture for modern Next.js applications.
