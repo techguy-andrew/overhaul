@@ -2,7 +2,11 @@ That's an important detail for consistency\! All the architecture principles rem
 
 Here is the revised reference document, updated for $\text{TSX}$ components:
 
-# CSS Architecture Reference Bible: Modules + Variables (The $\text{C-MOD/VAR}$ Standard)
+# Professional Development Standards: Next.js 15 + React 19 + TypeScript (2024)
+
+## Component Architecture & CSS Standards (C-MOD/VAR)
+
+### Professional Dev Team Requirements (Updated 2024)
 
 ## 1\. Overview and Core Philosophy
 
@@ -81,11 +85,18 @@ import './styles/globals.css'; // Layer 2: Global styles and layout utilities
 
 **Important Note:** Pages that only use global layout utilities (`.page`, `.main`, `.content`, grid utilities, flexbox stacks, etc.) do **not** require their own `.module.css` files. CSS Modules should be reserved for components with unique styling requirements that cannot be achieved with the global utility system.
 
-**Example Co-location:**
-`/src/app/components/card/`
+**Professional Co-location Pattern:**
+```
+/src/app/components/card/
+├── Card.tsx                 (PascalCase component file)
+├── Card.module.css          (Matching PascalCase CSS module)
+└── index.ts                 (Barrel export for clean imports)
+```
 
-  * $\text{card.tsx}$ (Component file)
-  * $\text{card.module.css}$ (Co-located styles for unique card styling)
+**Naming Standards:**
+- Component files: PascalCase (Card.tsx, Button.tsx)
+- CSS Modules: Match component name (Card.module.css, Button.module.css)
+- Barrel exports: Always include index.ts for clean imports
 
 -----
 
@@ -98,7 +109,7 @@ Component styles **must** reference a defined $\text{CSS}$ **Variable** for all 
 **Required:**
 
 ```css
-/* card.module.css */
+/* Card.module.css */
 .card {
   border-radius: var(--radius-md); 
   padding: var(--space-4); /* Use token for spacing */
@@ -121,7 +132,7 @@ Component variations (e.g., `primary`, `secondary`, `small`, `large`) **must** b
 **CSS Module Example:**
 
 ```css
-/* button.module.css */
+/* Button.module.css */
 .button { /* Base styles */ }
 
 .secondary { /* Variant override */
@@ -133,8 +144,8 @@ Component variations (e.g., `primary`, `secondary`, `small`, `large`) **must** b
 **Component ($\text{.tsx}$) Example:**
 
 ```tsx
-// button.tsx
-import styles from './button.module.css';
+// Button.tsx
+import styles from './Button.module.css';
 
 interface ButtonProps {
   variant?: 'primary' | 'secondary';
@@ -247,7 +258,159 @@ Multiple utility classes can be combined for sophisticated layouts while maintai
 
 -----
 
-## 5\. Scalability and Maintainability Rationale
+## 5. TypeScript Professional Standards (2024)
+
+### 5.1. Interface and Type Conventions
+
+**Component Props:**
+```tsx
+// Professional naming: ComponentNameProps
+interface ButtonProps {
+  children: React.ReactNode;
+  variant?: 'primary' | 'secondary';
+  size?: 'sm' | 'md' | 'lg';
+  onClick?: () => void;
+  disabled?: boolean;
+  type?: 'button' | 'submit' | 'reset';
+}
+
+// Export for reuse
+export type { ButtonProps };
+```
+
+**File Organization:**
+```
+/src/
+├── app/                     (Next.js App Router)
+├── components/              (Reusable UI components)
+├── types/                   (Global TypeScript definitions)
+├── utils/                   (Helper functions)
+└── hooks/                   (Custom React hooks)
+```
+
+### 5.2. Import/Export Best Practices
+
+**Barrel Exports (index.ts):**
+```tsx
+// /src/components/button/index.ts
+export { Button, type ButtonProps } from './Button';
+```
+
+**Clean Imports:**
+```tsx
+// In consuming components
+import { Button, type ButtonProps } from '@/components/button';
+```
+
+### 5.3. Component File Structure
+
+```tsx
+// Button.tsx - Professional structure
+import styles from './Button.module.css';
+
+// Types at top
+interface ButtonProps {
+  children: React.ReactNode;
+  variant?: 'primary' | 'secondary';
+  size?: 'sm' | 'md' | 'lg';
+  onClick?: () => void;
+  disabled?: boolean;
+  type?: 'button' | 'submit' | 'reset';
+}
+
+// Component with proper defaults
+export function Button({
+  children,
+  variant = 'primary',
+  size = 'md',
+  onClick,
+  disabled = false,
+  type = 'button'
+}: ButtonProps) {
+  return (
+    <button
+      className={`${styles.button} ${styles[variant]} ${styles[size]}`}
+      onClick={onClick}
+      disabled={disabled}
+      type={type}
+    >
+      {children}
+    </button>
+  );
+}
+
+// Export types for external use
+export type { ButtonProps };
+```
+
+## 6. Next.js 15 + React 19 Professional Patterns
+
+### 6.1. App Router Best Practices
+
+**Project Structure:**
+```
+/src/app/
+├── layout.tsx              (Root layout)
+├── page.tsx                (Homepage)
+├── globals.css             (Global styles + utilities)
+├── components/             (App-specific components)
+└── (dashboard)/            (Route groups)
+    ├── layout.tsx
+    └── page.tsx
+```
+
+### 6.2. Modern Import Patterns
+
+**Path Mapping (tsconfig.json):**
+```json
+{
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}
+```
+
+**Clean Imports:**
+```tsx
+// Use path mapping for clean imports
+import { Button } from '@/components/button';
+import { Card } from '@/components/card';
+```
+
+### 6.3. Performance Optimization
+
+**Proper Component Exports:**
+```tsx
+// Default export for pages
+export default function HomePage() {
+  return <div>...</div>;
+}
+
+// Named exports for components
+export function Button() {
+  return <button>...</button>;
+}
+```
+
+## 7. Professional Dev Team Standards Summary
+
+### ✅ Implemented Standards
+- PascalCase component files
+- CSS Modules with design tokens
+- TypeScript strict mode
+- Next.js 15 App Router
+- Clean import resolution
+
+### 🔧 Recommended Improvements
+- Rename CSS modules to match component names
+- Add comprehensive TypeScript types export
+- Implement path mapping for cleaner imports
+- Add component documentation patterns
+- Establish consistent barrel export strategy
+
+## 8. Scalability and Maintainability Rationale
 
 This approach is required for **long-term team scalability** and **code maintainability** because it:
 

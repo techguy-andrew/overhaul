@@ -5,25 +5,29 @@ export default function Home() {
   return (
     <div className="page">
       <main className="main">
-        <div className="content stack-v-6">
-          <Card />
-
+        <div className="content stack-v-8">
           <div className="stack-v-4">
-            <h2>Button Examples</h2>
-            <div className="stack-h-4">
-              <Button variant="primary" size="sm">Small Primary</Button>
-              <Button variant="primary" size="md">Medium Primary</Button>
-              <Button variant="primary" size="lg">Large Primary</Button>
-            </div>
-            <div className="stack-h-4">
-              <Button variant="secondary" size="sm">Small Secondary</Button>
-              <Button variant="secondary" size="md">Medium Secondary</Button>
-              <Button variant="secondary" size="lg">Large Secondary</Button>
-            </div>
-            <div className="stack-h-4">
-              <Button variant="primary" disabled>Disabled Primary</Button>
-              <Button variant="secondary" disabled>Disabled Secondary</Button>
-            </div>
+            <h1>C-MOD/VAR Component Variants</h1>
+            <p>Professional React components using CSS Modules with design tokens</p>
+          </div>
+
+          <div className="grid-2">
+            <Card
+              variant="primary"
+              title="Primary Card"
+              description="This is the primary variant demonstrating the C-MOD/VAR standard with CSS Modules and design tokens."
+            />
+
+            <Card
+              variant="secondary"
+              title="Secondary Card"
+              description="This is the secondary variant showing how variants are applied using TypeScript props and CSS classes."
+            />
+          </div>
+
+          <div className="stack-h-6 flex-center">
+            <Button variant="primary">Primary Button</Button>
+            <Button variant="secondary">Secondary Button</Button>
           </div>
         </div>
       </main>
