@@ -74,7 +74,7 @@ import './styles/globals.css'; // Layer 2: Global styles and layout utilities
 // ... RootLayout Component
 ```
 
-**Professional Organization:** All global styling architecture is consolidated in `/src/app/styles/` for better maintainability and team collaboration.\n\n**Final Professional File Structure:**\n```\n/src/app/\n├── layout.tsx                     (Next.js root layout - imports from styles/)\n├── page.tsx                       (pages use global layout utilities)\n├── styles/                        (consolidated styling architecture)\n│   ├── design-tokens.css          (Layer 1: Design system foundation)\n│   └── globals.css                (Layer 2: Global styles & utilities)\n└── components/card/\n    ├── card.tsx                   (component files)\n    └── card.module.css            (Layer 3: Component-specific styles)\n```\n\nThis structure follows professional development team practices and ensures scalable CSS architecture management."
+**Professional Organization:** All global styling architecture is consolidated in `/src/app/styles/` for better maintainability and team collaboration.\n\n**Final Professional File Structure:**\n```\n/src/app/\n├── layout.tsx                     (Next.js root layout - imports from styles/)\n├── page.tsx                       (pages use global layout utilities)\n├── styles/                        (consolidated styling architecture)\n│   ├── design-tokens.css          (Layer 1: Design system foundation)\n│   └── globals.css                (Layer 2: Global styles & utilities)\n└── components/                    (flat component structure)\n    ├── Card.tsx                   (PascalCase component files)\n    ├── Card.module.css            (Layer 3: Component-specific styles)\n    ├── Button.tsx                 (PascalCase component files)\n    └── Button.module.css          (Layer 3: Component-specific styles)\n```\n\nThis structure follows professional development team practices and ensures scalable CSS architecture management.
 
 ### 2.3. Component Styles (The Scoped Layer)
 
@@ -85,18 +85,21 @@ import './styles/globals.css'; // Layer 2: Global styles and layout utilities
 
 **Important Note:** Pages that only use global layout utilities (`.page`, `.main`, `.content`, grid utilities, flexbox stacks, etc.) do **not** require their own `.module.css` files. CSS Modules should be reserved for components with unique styling requirements that cannot be achieved with the global utility system.
 
-**Professional Co-location Pattern:**
+**Professional Flat Structure Pattern:**
 ```
-/src/app/components/card/
+/src/app/components/
 ├── Card.tsx                 (PascalCase component file)
 ├── Card.module.css          (Matching PascalCase CSS module)
-└── index.ts                 (Barrel export for clean imports)
+├── Button.tsx               (PascalCase component file)
+└── Button.module.css        (Matching PascalCase CSS module)
 ```
 
-**Naming Standards:**
-- Component files: PascalCase (Card.tsx, Button.tsx)
-- CSS Modules: Match component name (Card.module.css, Button.module.css)
-- Barrel exports: Always include index.ts for clean imports
+**Professional File Organization Standards:**
+- **Component files:** PascalCase (Card.tsx, Button.tsx)
+- **CSS Modules:** Match component name (Card.module.css, Button.module.css)
+- **Import extensions:** Never use file extensions in TypeScript imports
+- **Structure:** Flat component directory for single-component files
+- **Index files:** Only use when you have multiple related exports from a folder
 
 -----
 
@@ -290,16 +293,20 @@ export type { ButtonProps };
 
 ### 5.2. Import/Export Best Practices
 
-**Barrel Exports (index.ts):**
+**Direct Component Imports (Professional Standard):**
 ```tsx
-// /src/components/button/index.ts
-export { Button, type ButtonProps } from './Button';
+// Professional approach - direct imports without index files
+import { Button, type ButtonProps } from '@/components/Button';
+import { Card, type CardProps } from '@/components/Card';
 ```
 
-**Clean Imports:**
+**When to Use Barrel Exports:**
 ```tsx
-// In consuming components
-import { Button, type ButtonProps } from '@/components/button';
+// Only use index.ts when you have multiple related exports
+// /src/components/forms/index.ts (for a forms library)
+export { LoginForm } from './LoginForm';
+export { ContactForm } from './ContactForm';
+export { type FormProps } from './types';
 ```
 
 ### 5.3. Component File Structure
