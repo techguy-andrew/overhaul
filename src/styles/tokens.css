@@ -1,0 +1,49 @@
+/*
+  DESIGN TOKEN FOUNDATION - C-MOD/VAR Layer 1
+
+  Exact Framer Schema Tokens - Professional Minimal Implementation
+  These 22 tokens represent the complete Framer layout panel properties.
+  Every utility in Layer 2 MUST reference these tokens exclusively.
+*/
+
+:root {
+  /* ===== POSITION TOKENS ===== */
+  --position-relative: relative;
+  --position-absolute: absolute;
+  --position-sticky: sticky;
+  --position-fixed: fixed;
+
+  /* ===== SIZE TOKENS ===== */
+  --size-fill: 100%;              /* Width/Height: Fill */
+  --size-relative: 1fr;           /* Width/Height: Relative (1fr) */
+  --size-fixed: 400px;            /* Width/Height: Fixed */
+  --size-fit-content: fit-content; /* Width/Height: Fit Content */
+  --size-viewport: 100vh;          /* Height: Viewport */
+
+  /* ===== LAYOUT TYPE TOKENS ===== */
+  --layout-type-stack: flex;      /* Layout Type: Stack */
+  --layout-type-grid: grid;       /* Layout Type: Grid */
+
+  /* ===== DIRECTION TOKENS ===== */
+  --direction-horizontal: row;     /* Direction: Horizontal */
+  --direction-vertical: column;    /* Direction: Vertical */
+
+  /* ===== DISTRIBUTION TOKENS (Justify-Content) ===== */
+  --distribute-start: flex-start;     /* Distribute: Start */
+  --distribute-center: center;        /* Distribute: Center */
+  --distribute-end: flex-end;         /* Distribute: End */
+  --distribute-space-between: space-between; /* Distribute: Space Between */
+
+  /* ===== ALIGNMENT TOKENS (Align-Items) ===== */
+  --align-start: flex-start;       /* Align: Start */
+  --align-center: center;          /* Align: Center */
+  --align-end: flex-end;           /* Align: End */
+
+  /* ===== WRAP TOKENS ===== */
+  --wrap-yes: wrap;                /* Wrap: Yes */
+  --wrap-no: nowrap;               /* Wrap: No */
+
+  /* ===== SPACING TOKENS ===== */
+  --layout-gap: 10px;              /* Gap */
+  --layout-padding: 0;             /* Padding (Base) */
+}

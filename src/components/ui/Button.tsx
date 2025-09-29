@@ -2,6 +2,7 @@ import styles from './Button.module.css';
 
 interface ButtonProps {
   children: React.ReactNode;
+  variant?: 'primary' | 'secondary';
   onClick?: () => void;
   disabled?: boolean;
   type?: 'button' | 'submit' | 'reset';
@@ -9,13 +10,14 @@ interface ButtonProps {
 
 export function Button({
   children,
+  variant = 'primary',
   onClick,
   disabled = false,
   type = 'button'
 }: ButtonProps) {
   return (
     <button
-      className={styles.button}
+      className={`${styles.button} ${styles[variant]}`}
       onClick={onClick}
       disabled={disabled}
       type={type}
@@ -24,3 +26,5 @@ export function Button({
     </button>
   );
 }
+
+export type { ButtonProps };

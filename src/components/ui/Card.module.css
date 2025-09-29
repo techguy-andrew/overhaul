@@ -1,12 +1,16 @@
 /*
-  MINIMAL CARD - Learning Environment
+  CARD COMPONENT - C-MOD/VAR Layer 3
 
-  Single variant card demonstrating fluid responsive design.
-  Uses only our minimal design tokens.
+  Schema-compliant card component using only Framer design tokens.
+  Implements stack layout behavior and proper spacing.
 */
 
 .card {
-  padding: var(--space-fluid);
+  display: var(--layout-type-stack);
+  flex-direction: var(--direction-vertical);
+  gap: var(--layout-gap);
+  padding: 20px;
+  width: var(--size-fill);
   border: 1px solid #e5e7eb;
   border-radius: 8px;
   background: white;
@@ -14,15 +18,24 @@
 }
 
 .card h2 {
-  font-size: var(--text-fluid);
+  font-size: 1.25rem;
   font-weight: 600;
-  margin-bottom: calc(var(--space-fluid) * 0.5);
-  color: var(--color-text);
+  color: #1f2937;
+  margin: var(--layout-padding);
 }
 
 .card p {
-  font-size: var(--text-fluid);
+  font-size: 1rem;
   color: #6b7280;
   line-height: 1.6;
-  margin: 0;
+  margin: var(--layout-padding);
+}
+
+.primary {
+  border-color: #2563eb;
+}
+
+.secondary {
+  border-color: #6b7280;
+  background: #f9fafb;
 }

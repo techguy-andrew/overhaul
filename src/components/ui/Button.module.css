@@ -1,23 +1,24 @@
 /*
-  MINIMAL BUTTON - Learning Environment
+  BUTTON COMPONENT - C-MOD/VAR Layer 3
 
-  Single variant button demonstrating fluid responsive design.
-  Uses only our minimal design tokens.
+  Schema-compliant button component using only Framer design tokens.
+  Implements stack layout behavior and proper alignment.
 */
 
 .button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--space-fluid);
-  background: var(--color-primary);
+  display: var(--layout-type-stack);
+  flex-direction: var(--direction-horizontal);
+  align-items: var(--align-center);
+  justify-content: var(--distribute-center);
+  padding: 12px 24px;
+  background: #2563eb;
   color: white;
   border: none;
   border-radius: 6px;
-  font-size: var(--text-fluid);
+  font-size: 1rem;
   font-family: inherit;
   cursor: pointer;
-  transition: opacity 150ms ease;
+  width: var(--size-fit-content);
 }
 
 .button:hover {
@@ -27,4 +28,15 @@
 .button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+.primary {
+  background: #2563eb;
+  color: white;
+}
+
+.secondary {
+  background: white;
+  color: #2563eb;
+  border: 1px solid #2563eb;
 }
