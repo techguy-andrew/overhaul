@@ -30,7 +30,7 @@ export default function Home() {
             <h3>1.1 Position: Relative</h3>
             <p><strong>Token:</strong> <code>--position-relative: relative</code> in tokens.css</p>
             <p><strong>Utility:</strong> <code>.u-position-relative</code> in utilities.css</p>
-            <p><strong>Framer Prop:</strong> <code>position="relative"</code></p>
+            <p><strong>Framer Prop:</strong> <code>position=&quot;relative&quot;</code></p>
             <p><strong>Behavior:</strong> Element participates in document flow, can be offset</p>
 
             <Frame layout="stack" direction="vertical" width="fill" gap padding style={{ border: '2px dashed #3b82f6', borderRadius: '8px' }}>
@@ -48,7 +48,7 @@ export default function Home() {
             <h3>1.2 Position: Absolute</h3>
             <p><strong>Token:</strong> <code>--position-absolute: absolute</code> in tokens.css</p>
             <p><strong>Utility:</strong> <code>.u-position-absolute</code> in utilities.css</p>
-            <p><strong>Framer Prop:</strong> <code>position="absolute"</code></p>
+            <p><strong>Framer Prop:</strong> <code>position=&quot;absolute&quot;</code></p>
             <p><strong>Behavior:</strong> Element removed from flow, positioned relative to nearest positioned ancestor</p>
 
             <Frame position="relative" layout="stack" direction="vertical" width="fill" gap padding style={{ border: '2px dashed #10b981', borderRadius: '8px', minHeight: '150px' }}>
@@ -70,7 +70,7 @@ export default function Home() {
             <h3>1.3 Position: Sticky</h3>
             <p><strong>Token:</strong> <code>--position-sticky: sticky</code> in tokens.css</p>
             <p><strong>Utility:</strong> <code>.u-position-sticky</code> in utilities.css</p>
-            <p><strong>Framer Prop:</strong> <code>position="sticky"</code></p>
+            <p><strong>Framer Prop:</strong> <code>position=&quot;sticky&quot;</code></p>
             <p><strong>Behavior:</strong> Element switches between relative and fixed based on scroll position</p>
 
             <Frame layout="stack" direction="vertical" width="fill" style={{ height: '300px', overflow: 'auto', border: '2px dashed #f59e0b', borderRadius: '8px' }}>
@@ -95,7 +95,7 @@ export default function Home() {
             <h3>1.4 Position: Fixed</h3>
             <p><strong>Token:</strong> <code>--position-fixed: fixed</code> in tokens.css</p>
             <p><strong>Utility:</strong> <code>.u-position-fixed</code> in utilities.css</p>
-            <p><strong>Framer Prop:</strong> <code>position="fixed"</code></p>
+            <p><strong>Framer Prop:</strong> <code>position=&quot;fixed&quot;</code></p>
             <p><strong>Behavior:</strong> Element positioned relative to viewport, stays in place during scroll</p>
             <p style={{ padding: '8px', background: '#fef3c7', borderRadius: '4px', fontSize: '14px' }}>
               ⚠️ Fixed elements removed from normal flow - use sparingly for overlays, modals, navigation
@@ -113,7 +113,7 @@ export default function Home() {
             <h3>2.1 Size: Fill</h3>
             <p><strong>Token:</strong> <code>--size-fill: 100%</code> in tokens.css</p>
             <p><strong>Utility:</strong> <code>.u-size-fill</code> in utilities.css</p>
-            <p><strong>Framer Props:</strong> <code>width="fill" height="fill"</code></p>
+            <p><strong>Framer Props:</strong> <code>width=&quot;fill&quot; height=&quot;fill&quot;</code></p>
             <p><strong>Behavior:</strong> Element expands to fill all available container space</p>
 
             <Frame layout="stack" direction="vertical" width="fill" style={{ height: '200px', border: '2px dashed #3b82f6', borderRadius: '8px', padding: '8px' }}>
@@ -132,7 +132,7 @@ export default function Home() {
             <h3>2.2 Size: Relative</h3>
             <p><strong>Token:</strong> <code>--size-relative: 1fr</code> in tokens.css</p>
             <p><strong>Utility:</strong> <code>.u-size-relative</code> in utilities.css</p>
-            <p><strong>Framer Props:</strong> <code>width="relative" height="relative"</code></p>
+            <p><strong>Framer Props:</strong> <code>width=&quot;relative&quot; height=&quot;relative&quot;</code></p>
             <p><strong>Behavior:</strong> Element shares available space proportionally with other relative elements</p>
 
             <Frame layout="stack" direction="horizontal" gap style={{ height: '120px', border: '2px dashed #10b981', borderRadius: '8px', padding: '8px' }}>
@@ -147,7 +147,7 @@ export default function Home() {
             <h3>2.3 Size: Fixed</h3>
             <p><strong>Token:</strong> <code>--size-fixed: 320px</code> in tokens.css</p>
             <p><strong>Utility:</strong> <code>.u-size-fixed</code> in utilities.css</p>
-            <p><strong>Framer Props:</strong> <code>width="fixed" height="fixed"</code></p>
+            <p><strong>Framer Props:</strong> <code>width=&quot;fixed&quot; height=&quot;fixed&quot;</code></p>
             <p><strong>Behavior:</strong> Element maintains exact 320px dimensions regardless of container</p>
 
             <Frame layout="stack" direction="horizontal" gap style={{ border: '2px dashed #f59e0b', borderRadius: '8px', padding: '8px' }}>
@@ -164,7 +164,7 @@ export default function Home() {
             <h3>2.4 Size: Fit Content</h3>
             <p><strong>Token:</strong> <code>--size-fit-content: fit-content</code> in tokens.css</p>
             <p><strong>Utility:</strong> <code>.u-size-fit-content</code> in utilities.css</p>
-            <p><strong>Framer Props:</strong> <code>width="fit-content" height="fit-content"</code></p>
+            <p><strong>Framer Props:</strong> <code>width=&quot;fit-content&quot; height=&quot;fit-content&quot;</code></p>
             <p><strong>Behavior:</strong> Element shrinks to content size, never grows beyond content needs</p>
 
             <Frame layout="stack" direction="horizontal" gap alignment="start" style={{ border: '2px dashed #8b5cf6', borderRadius: '8px', padding: '8px' }}>
@@ -178,7 +178,7 @@ export default function Home() {
             <h3>2.5 Size: Viewport</h3>
             <p><strong>Token:</strong> <code>--size-viewport: 100vh</code> in tokens.css</p>
             <p><strong>Utility:</strong> <code>.u-size-viewport</code> in utilities.css</p>
-            <p><strong>Framer Props:</strong> <code>width="viewport" height="viewport"</code></p>
+            <p><strong>Framer Props:</strong> <code>width=&quot;viewport&quot; height=&quot;viewport&quot;</code></p>
             <p><strong>Behavior:</strong> Element sizes relative to viewport dimensions</p>
             <p style={{ padding: '8px', background: '#fef3c7', borderRadius: '4px', fontSize: '14px' }}>
               ⚠️ Viewport sizing shown conceptually - full viewport cards would break page layout
@@ -196,7 +196,7 @@ export default function Home() {
             <h3>3.1 Layout: Stack</h3>
             <p><strong>Token:</strong> <code>--layout-type-stack: flex</code> in tokens.css</p>
             <p><strong>Utility:</strong> <code>.u-layout-stack</code> in utilities.css</p>
-            <p><strong>Framer Prop:</strong> <code>layout="stack"</code></p>
+            <p><strong>Framer Prop:</strong> <code>layout=&quot;stack&quot;</code></p>
             <p><strong>Behavior:</strong> Creates flexbox container for linear layouts</p>
 
             <Frame layout="stack" direction="horizontal" gap style={{ border: '2px dashed #ef4444', borderRadius: '8px', padding: '8px' }}>
@@ -211,7 +211,7 @@ export default function Home() {
             <h3>3.2 Layout: Grid</h3>
             <p><strong>Token:</strong> <code>--layout-type-grid: flex</code> in tokens.css</p>
             <p><strong>Utility:</strong> <code>.u-layout-grid</code> in utilities.css</p>
-            <p><strong>Framer Prop:</strong> <code>layout="grid"</code></p>
+            <p><strong>Framer Prop:</strong> <code>layout=&quot;grid&quot;</code></p>
             <p><strong>Behavior:</strong> Creates flexbox container with wrapping enabled for grid-like layouts</p>
 
             <Frame layout="grid" gap style={{ border: '2px dashed #06b6d4', borderRadius: '8px', padding: '8px' }}>
@@ -227,7 +227,7 @@ export default function Home() {
             <h3>3.3 Direction: Horizontal</h3>
             <p><strong>Token:</strong> <code>--direction-horizontal: row</code> in tokens.css</p>
             <p><strong>Utility:</strong> <code>.u-direction-horizontal</code> in utilities.css</p>
-            <p><strong>Framer Prop:</strong> <code>direction="horizontal"</code></p>
+            <p><strong>Framer Prop:</strong> <code>direction=&quot;horizontal&quot;</code></p>
             <p><strong>Behavior:</strong> Sets main axis from left to right</p>
 
             <Frame layout="stack" direction="horizontal" gap style={{ border: '2px dashed #84cc16', borderRadius: '8px', padding: '8px' }}>
@@ -242,7 +242,7 @@ export default function Home() {
             <h3>3.4 Direction: Vertical</h3>
             <p><strong>Token:</strong> <code>--direction-vertical: column</code> in tokens.css</p>
             <p><strong>Utility:</strong> <code>.u-direction-vertical</code> in utilities.css</p>
-            <p><strong>Framer Prop:</strong> <code>direction="vertical"</code></p>
+            <p><strong>Framer Prop:</strong> <code>direction=&quot;vertical&quot;</code></p>
             <p><strong>Behavior:</strong> Sets main axis from top to bottom</p>
 
             <Frame layout="stack" direction="vertical" gap style={{ border: '2px dashed #f97316', borderRadius: '8px', padding: '8px', width: '200px' }}>
@@ -267,7 +267,7 @@ export default function Home() {
               <Frame layout="stack" direction="vertical" gap>
                 <h4>Start Distribution</h4>
                 <p><strong>Token:</strong> <code>--distribute-start: flex-start</code> in tokens.css</p>
-                <p><strong>Framer Prop:</strong> <code>distribution="start"</code></p>
+                <p><strong>Framer Prop:</strong> <code>distribution=&quot;start&quot;</code></p>
                 <Frame layout="stack" direction="horizontal" distribution="start" style={{ height: '80px', border: '1px solid #e5e7eb', borderRadius: '8px', padding: '8px' }}>
                   <Card title="Start 1" description="distribution='start'" variant="primary" />
                   <Card title="Start 2" description="Packed at start" variant="secondary" />
@@ -277,7 +277,7 @@ export default function Home() {
               <Frame layout="stack" direction="vertical" gap>
                 <h4>Center Distribution</h4>
                 <p><strong>Token:</strong> <code>--distribute-center: center</code> in tokens.css</p>
-                <p><strong>Framer Prop:</strong> <code>distribution="center"</code></p>
+                <p><strong>Framer Prop:</strong> <code>distribution=&quot;center&quot;</code></p>
                 <Frame layout="stack" direction="horizontal" distribution="center" style={{ height: '80px', border: '1px solid #e5e7eb', borderRadius: '8px', padding: '8px' }}>
                   <Card title="Center 1" description="distribution='center'" variant="primary" />
                   <Card title="Center 2" description="Centered together" variant="secondary" />
@@ -287,7 +287,7 @@ export default function Home() {
               <Frame layout="stack" direction="vertical" gap>
                 <h4>End Distribution</h4>
                 <p><strong>Token:</strong> <code>--distribute-end: flex-end</code> in tokens.css</p>
-                <p><strong>Framer Prop:</strong> <code>distribution="end"</code></p>
+                <p><strong>Framer Prop:</strong> <code>distribution=&quot;end&quot;</code></p>
                 <Frame layout="stack" direction="horizontal" distribution="end" style={{ height: '80px', border: '1px solid #e5e7eb', borderRadius: '8px', padding: '8px' }}>
                   <Card title="End 1" description="distribution='end'" variant="primary" />
                   <Card title="End 2" description="Packed at end" variant="secondary" />
@@ -297,7 +297,7 @@ export default function Home() {
               <Frame layout="stack" direction="vertical" gap>
                 <h4>Space Between Distribution</h4>
                 <p><strong>Token:</strong> <code>--distribute-space-between: space-between</code> in tokens.css</p>
-                <p><strong>Framer Prop:</strong> <code>distribution="space-between"</code></p>
+                <p><strong>Framer Prop:</strong> <code>distribution=&quot;space-between&quot;</code></p>
                 <Frame layout="stack" direction="horizontal" distribution="space-between" style={{ height: '80px', border: '1px solid #e5e7eb', borderRadius: '8px', padding: '8px' }}>
                   <Card title="Space 1" description="distribution='space-between'" variant="primary" />
                   <Card title="Space 2" description="Equal space between" variant="secondary" />
@@ -315,7 +315,7 @@ export default function Home() {
               <Frame width="relative">
                 <h4>Start Alignment</h4>
                 <p><strong>Token:</strong> <code>--align-start: flex-start</code> in tokens.css</p>
-                <p><strong>Framer Prop:</strong> <code>alignment="start"</code></p>
+                <p><strong>Framer Prop:</strong> <code>alignment=&quot;start&quot;</code></p>
                 <Frame layout="stack" direction="horizontal" alignment="start" style={{ height: '120px', border: '1px solid #e5e7eb', borderRadius: '8px', padding: '8px' }}>
                   <Card title="Align Start" description="alignment='start'" variant="primary" />
                 </Frame>
@@ -324,7 +324,7 @@ export default function Home() {
               <Frame width="relative">
                 <h4>Center Alignment</h4>
                 <p><strong>Token:</strong> <code>--align-center: center</code> in tokens.css</p>
-                <p><strong>Framer Prop:</strong> <code>alignment="center"</code></p>
+                <p><strong>Framer Prop:</strong> <code>alignment=&quot;center&quot;</code></p>
                 <Frame layout="stack" direction="horizontal" alignment="center" style={{ height: '120px', border: '1px solid #e5e7eb', borderRadius: '8px', padding: '8px' }}>
                   <Card title="Align Center" description="alignment='center'" variant="secondary" />
                 </Frame>
@@ -333,7 +333,7 @@ export default function Home() {
               <Frame width="relative">
                 <h4>End Alignment</h4>
                 <p><strong>Token:</strong> <code>--align-end: flex-end</code> in tokens.css</p>
-                <p><strong>Framer Prop:</strong> <code>alignment="end"</code></p>
+                <p><strong>Framer Prop:</strong> <code>alignment=&quot;end&quot;</code></p>
                 <Frame layout="stack" direction="horizontal" alignment="end" style={{ height: '120px', border: '1px solid #e5e7eb', borderRadius: '8px', padding: '8px' }}>
                   <Card title="Align End" description="alignment='end'" variant="primary" />
                 </Frame>
@@ -355,7 +355,7 @@ export default function Home() {
               <h4>Wrap: Yes</h4>
               <p><strong>Token:</strong> <code>--wrap-yes: wrap</code> in tokens.css</p>
               <p><strong>Utility:</strong> <code>.u-wrap-yes</code> in utilities.css</p>
-              <p><strong>Framer Prop:</strong> <code>wrap="yes"</code></p>
+              <p><strong>Framer Prop:</strong> <code>wrap=&quot;yes&quot;</code></p>
               <p>Elements wrap to new lines when needed</p>
               <Frame layout="stack" direction="horizontal" wrap="yes" gap style={{ border: '1px solid #e5e7eb', borderRadius: '8px', padding: '8px' }}>
                 <Card width="fit-content" title="Wrap Card 1" description="wrap='yes'" variant="primary" style={{ minWidth: '200px' }} />
@@ -369,7 +369,7 @@ export default function Home() {
               <h4>Wrap: No</h4>
               <p><strong>Token:</strong> <code>--wrap-no: nowrap</code> in tokens.css</p>
               <p><strong>Utility:</strong> <code>.u-wrap-no</code> in utilities.css</p>
-              <p><strong>Framer Prop:</strong> <code>wrap="no"</code></p>
+              <p><strong>Framer Prop:</strong> <code>wrap=&quot;no&quot;</code></p>
               <p>Elements stay on single line, may overflow</p>
               <Frame layout="stack" direction="horizontal" wrap="no" gap style={{ border: '1px solid #e5e7eb', borderRadius: '8px', padding: '8px', overflow: 'auto' }}>
                 <Card width="fixed" title="No Wrap 1" description="wrap='no'" variant="primary" style={{ minWidth: '200px', flexShrink: 0 }} />
