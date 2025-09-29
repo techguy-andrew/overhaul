@@ -23,11 +23,49 @@ At the heart of the system lies an exact mapping of Framer’s layout panel prop
 
 This comprehensive token and utility set forms the single source of truth for all layout decisions, enabling zero-runtime overhead and complete contextual intelligence.
 
-## Learning Focus: The `card.tsx` Component as a Mastery Tool
+## Production-Ready Implementation: Minimal File Structure
 
-To accelerate developer onboarding and mastery of the entire 22-property system, C-MOD/VAR employs a single, canonical component example: `card.tsx`. This component is meticulously designed to demonstrate every layout property in practical use, serving as a living documentation and hands-on learning reference.
+The C-MOD/VAR system is implemented using a minimal, industry-standard Next.js structure:
 
-By exploring and modifying `card.tsx`, developers gain immediate, contextual understanding of how each token and utility functions within real UI scenarios, fostering deep familiarity with the system’s principles and patterns.
+```
+/project-root
+├── src/
+│   ├── app/                  # Next.js App Router
+│   │   ├── layout.tsx        # Minimal root (fonts/metadata only)
+│   │   └── page.tsx         # Complete learning exercise
+│   ├── components/           # Component primitives
+│   │   ├── Card/            # Canonical learning component
+│   │   │   ├── Card.tsx
+│   │   │   ├── card.module.css
+│   │   │   └── index.ts
+│   │   ├── Frame/           # Essential container component
+│   │   │   ├── Frame.tsx
+│   │   │   ├── frame.module.css
+│   │   │   └── index.ts
+│   │   └── index.ts         # Barrel exports
+│   ├── lib/                 # Type-safe utilities
+│   │   ├── hooks/
+│   │   │   └── useFluidSizing.ts
+│   │   ├── utils/
+│   │   │   └── propConversion.ts
+│   │   └── types/
+│   │       └── framerProps.ts
+│   └── styles/              # C-MOD/VAR foundation
+│       ├── globals.css      # Resets, fonts, imports
+│       ├── tokens.css       # 22 design tokens
+│       └── utilities.css    # 22 utility classes
+└── package.json
+```
+
+## Learning Focus: Complete Property Demonstration
+
+The system employs both Card and Frame components working together as comprehensive learning tools:
+
+**Card Component**: Demonstrates all 22 Framer properties through a canonical learning interface with type-safe props that map directly to utility classes.
+
+**Frame Component**: Provides essential stack/grid container functionality, serving as the foundational layout primitive.
+
+**Interactive Learning Page**: `src/app/page.tsx` serves as a self-contained, comprehensive exercise demonstrating every property through live examples, organized in 5 systematic sections covering all 22 properties.
 
 ## The C-MOD/VAR Three-Layer Architecture
 

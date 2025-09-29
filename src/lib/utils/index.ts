@@ -1,2 +1,8 @@
-// Utility functions will be exported here
-// Example: export { formatDate } from './formatDate';
+// Framer layout utility functions
+export {
+  getFramerClasses,
+  mergeFramerClasses,
+  getResponsiveSize,
+  getLayoutClasses,
+  FramerDefaults,
+} from './propConversion';

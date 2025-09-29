@@ -1,2 +1,21 @@
-// TypeScript type definitions will be exported here
-// Example: export type { User } from './User';
+// Framer-style layout prop types
+export type {
+  PositionType,
+  SizeType,
+  LayoutType,
+  DirectionType,
+  DistributionType,
+  AlignmentType,
+  WrapType,
+  FramerLayoutProps,
+  UIComponentProps,
+  ButtonProps,
+  InputProps,
+  CardProps,
+  FrameProps,
+  StackProps,
+  GridProps,
+  HeroProps,
+  SidebarProps,
+  FooterProps,
+} from './framerProps';

@@ -28,72 +28,109 @@ The global utility layer, implemented in `/styles/utilities.css`, offers 22 `.u-
 **Layer 3: Component API and Scoping (TypeScript / CSS Modules)**  
 The final interface exposes a clean, type-safe API through components like the canonical `Frame` component. Properties such as `width="fill"` and `layout="stack"` map directly to the underlying utilities, abstracting complex CSS logic and maximizing developer ergonomics. Component-specific visual treatments are scoped via CSS Modules, which reference global tokens to maintain design system integrity.
 
-Canonical Learning Component: `card.tsx`  
-The `card.tsx` component serves as the definitive example demonstrating all 22 Framer layout properties in action. It showcases the translation of Framer’s layout panel into the C-MOD/VAR system with clear, type-safe props and scoped styling.
+## Minimal Next.js + C-MOD/VAR File Structure
+
+The implementation follows a minimal, professional file structure optimized for clarity and maintainability:
+
+```
+src/
+├── app/
+│   ├── layout.tsx          # Minimal root (fonts/metadata only)
+│   └── page.tsx           # Complete learning exercise
+├── components/
+│   ├── Card/
+│   │   ├── Card.tsx       # Canonical Framer learning component
+│   │   ├── card.module.css
+│   │   └── index.ts
+│   ├── Frame/
+│   │   ├── Frame.tsx      # Essential stack/grid container
+│   │   ├── frame.module.css
+│   │   └── index.ts
+│   └── index.ts           # Clean barrel exports
+├── lib/
+│   ├── hooks/
+│   │   └── useFluidSizing.ts
+│   ├── utils/
+│   │   └── propConversion.ts
+│   └── types/
+│       └── framerProps.ts
+└── styles/                # Core C-MOD/VAR system
+    ├── globals.css        # Resets, fonts, imports
+    ├── tokens.css         # 22 design tokens
+    └── utilities.css      # 22 utility classes
+```
+
+## Canonical Learning Components
+
+### Card Component: Complete Framer Property Demonstration
+
+The `Card` component serves as the primary learning tool, demonstrating all 22 Framer layout properties with intelligent defaults and prop conversion:
 
 ```tsx
-import React from 'react';
+import { forwardRef } from 'react';
+import type { CardProps } from '@/lib/types/framerProps';
+import { mergeFramerClasses, FramerDefaults } from '@/lib/utils/propConversion';
 import styles from './card.module.css';
 
-interface CardProps {
-  position?: 'absolute' | 'relative' | 'fixed';
-  width?: 'fill' | 'hug' | 'fixed' | 'relative';
-  height?: 'fill' | 'hug' | 'fixed' | 'relative';
-  layout?: 'stack' | 'grid' | 'none';
-  direction?: 'horizontal' | 'vertical';
-  distribution?: 'start' | 'center' | 'end' | 'space-between' | 'space-around';
-  alignment?: 'start' | 'center' | 'end' | 'stretch';
-  wrap?: 'no-wrap' | 'wrap';
-  spacing?: 'small' | 'medium' | 'large';
-  fixedWidthPx?: number;
-  fixedHeightPx?: number;
-}
+export const Card = forwardRef<HTMLDivElement, CardProps>(
+  ({
+    children,
+    variant = 'primary',
+    title = "Card Component",
+    description = "Demonstrates C-MOD/VAR with design tokens!",
 
-export const Card: React.FC<CardProps> = ({
-  position = 'relative',
-  width = 'hug',
-  height = 'hug',
-  layout = 'stack',
-  direction = 'vertical',
-  distribution = 'start',
-  alignment = 'stretch',
-  wrap = 'no-wrap',
-  spacing = 'medium',
-  fixedWidthPx,
-  fixedHeightPx,
-  children,
-}) => {
-  const positionClass = `u-position-${position}`;
-  const layoutClass = `u-layout-${layout}`;
-  const directionClass = `u-direction-${direction}`;
-  const distributionClass = `u-distribution-${distribution}`;
-  const alignmentClass = `u-alignment-${alignment}`;
-  const wrapClass = `u-wrap-${wrap}`;
-  const spacingClass = `u-spacing-${spacing}`;
+    // Full Framer layout props with intelligent defaults
+    position, width, height, layout = 'stack', direction = 'vertical',
+    distribution, alignment, wrap, gap = true, padding = true,
 
-  const sizeStyle = {
-    width:
-      width === 'fixed' && fixedWidthPx ? `${fixedWidthPx}px`
-        : width === 'fill' ? 'var(--size-fill)'
-        : width === 'relative' ? 'var(--size-relative)'
-        : 'auto',
-    height:
-      height === 'fixed' && fixedHeightPx ? `${fixedHeightPx}px`
-        : height === 'fill' ? 'var(--size-fill)'
-        : height === 'relative' ? 'var(--size-relative)'
-        : 'auto',
-  };
+    className, style, ...rest
+  }, ref) => {
+    const framerClasses = mergeFramerClasses({
+      position, width, height, layout, direction,
+      distribution, alignment, wrap, gap, padding, className
+    }, `${styles.card} ${styles[variant]}`);
 
-  return (
-    <div
-      className={`${positionClass} ${layoutClass} ${directionClass} ${distributionClass} ${alignmentClass} ${wrapClass} ${spacingClass} ${styles.card}`}
-      style={sizeStyle}
-    >
-      {children}
-    </div>
-  );
-};
+    return (
+      <div ref={ref} className={framerClasses} style={style} {...rest}>
+        {title && <h2>{title}</h2>}
+        {description && <p>{description}</p>}
+        {children}
+      </div>
+    );
+  }
+);
 ```
+
+### Frame Component: Essential Layout Container
+
+The `Frame` component provides stack/grid container functionality with full Framer property support:
+
+```tsx
+import { forwardRef } from 'react';
+import type { FrameProps } from '@/lib/types/framerProps';
+import { mergeFramerClasses } from '@/lib/utils/propConversion';
+
+export const Frame = forwardRef<HTMLDivElement, FrameProps>(
+  ({
+    children, layout = 'stack', direction = 'vertical',
+    gap = true, className, style, ...rest
+  }, ref) => {
+    const frameClasses = mergeFramerClasses({
+      layout, direction, gap, className
+    }, 'frame-container');
+
+    return (
+      <div ref={ref} className={frameClasses} style={style} {...rest}>
+        {children}
+      </div>
+    );
+  }
+);
+```
+
+## Complete Learning Exercise
+
+The `src/app/page.tsx` file serves as a comprehensive, self-contained learning exercise demonstrating all 22 Framer properties through live Card examples. Each section methodically covers property groups with token references, utility classes, and interactive examples.
 
 Intrinsic Responsiveness and Design Sovereignty  
 By relying on container-relative CSS variables and contextual utilities, the system inherently adapts to available space without brittle media queries. Components flow and reflow fluidly, creating a self-regulating responsive ecosystem. Developers retain full creative sovereignty by working directly with native CSS and tokens, unlocking advanced features like container queries and complex selectors, free from third-party framework constraints.

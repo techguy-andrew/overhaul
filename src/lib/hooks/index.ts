@@ -1,2 +1,2 @@
-// Custom hooks will be exported here
-// Example: export { useLocalStorage } from './useLocalStorage';
+// React hooks for Framer-style layouts
+export { useFluidSizing, type FluidSizingOptions, type FluidSizingResult } from './useFluidSizing';

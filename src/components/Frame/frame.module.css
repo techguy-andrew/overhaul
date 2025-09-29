@@ -1,0 +1,41 @@
+/*
+  FRAME COMPONENT - FRAMER → FLEXBOX COMPLIANCE
+  C-MOD/VAR Layer 3: Visual-Only Styling
+
+  STRICT COMPLIANCE: NO layout properties permitted.
+  ALL layout handled by standardized 22 Flexbox utilities.
+  Only visual appearance properties allowed in component layer.
+*/
+
+.frame {
+  /* Visual styling only - ALL layout handled by utility classes */
+
+  /* Minimal visual foundation - can be customized via props or variants */
+  position: relative;
+
+  /* Optional: subtle visual indicators for debugging/development */
+  /* Remove in production or customize per design requirements */
+}
+
+/*
+  Optional: Frame variants for different visual treatments
+  These affect only visual appearance, never layout
+*/
+
+.frame.debug {
+  /* Development helper - remove in production */
+  outline: 1px dashed rgba(0, 100, 200, 0.3);
+  outline-offset: -1px;
+}
+
+.frame.elevated {
+  /* Subtle elevation for layered designs */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.frame.bordered {
+  /* Subtle border for defined boundaries */
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+}

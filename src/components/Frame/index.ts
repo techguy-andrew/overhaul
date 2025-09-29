@@ -1,0 +1,1 @@
+export { Frame, default, type FrameProps } from './Frame';

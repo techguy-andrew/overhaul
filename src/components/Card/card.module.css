@@ -38,3 +38,7 @@
   border-color: #6b7280;
   background: #f9fafb;
 }
+
+.elevated {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
