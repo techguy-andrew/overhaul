@@ -1,39 +1,108 @@
-The C-MOD/VAR Standard: Architecture for True Framer Parity
-Executive Summary and Core Innovation
-The C-MOD/VAR Standard represents the definitive, TypeScript-first architectural philosophy for modern web development, reconciling the power of native CSS with enterprise-grade systematic consistency. Its core innovation is the integration of Contextual Intelligence into a deliberate three-layer styling model, establishing a Minimal API that perfectly replicates the fluid layout behaviors of tools like Framer. This approach delivers true design sovereignty, scalability, and long-term architectural integrity within a Next.js environment.
+The C-MOD/VAR Standard: Framer-to-Flexbox Architecture for True Layout Parity
 
-Three-Layer Styling Architecture
-The architecture enforces design system integrity through a strict three-layer hierarchy:
+Executive Summary and Core Innovation  
+The C-MOD/VAR Standard establishes a precise, TypeScript-first architectural framework that translates Framer layout semantics directly into native Flexbox CSS, achieving flawless parity with Framer’s design system. Through a rigorous three-layer architecture—Design Token Foundation, Contextually Intelligent Utilities, and Component API with Scoping—this approach delivers a minimal, type-safe API that abstracts complex layout logic, enabling intrinsic responsiveness, seamless Next.js integration, and scalable team collaboration.
 
-Layer 1: Design Token Foundation (CSS Variables)
+22-Property Framer-to-Flexbox Conversion Chart  
+This foundational chart defines the exact mapping of Framer layout panel properties to native CSS variables and utilities, ensuring consistent and predictable behavior across all components.
 
-The system begins with exactly 22 CSS Variables defined in `/styles/tokens.css`, acting as the single source of truth for complete Framer layout panel parity. This minimal foundation encapsulates every Framer layout property—position, size, layout type, direction, distribution, alignment, wrap, and spacing (--size-fill: 100%, --size-relative: 1fr). By centralizing only these essential values, the system ensures visual consistency and facilitates effortless global refactoring.
+| Property       | Framer Value(s)                          | CSS Variable / Utility Class             | Flexbox Equivalent Description                                  |
+|----------------|----------------------------------------|-----------------------------------------|-----------------------------------------------------------------|
+| **Position**   | absolute, relative, fixed               | --position: absolute / relative / fixed | position CSS property                                           |
+| **Sizing**     | fill, hug, fixed, relative              | --size-fill: 100%, --size-relative: 1fr, fixed px values | width/height or flex sizing                                     |
+| **Layout**     | stack, grid, none                       | .u-layout-stack, .u-layout-grid, none   | display: flex / grid / block                                    |
+| **Direction**  | horizontal, vertical                    | --direction-row, --direction-column     | flex-direction: row / column                                    |
+| **Distribution**| start, center, end, space-between, space-around | --justify-start, --justify-center, etc. | justify-content flex properties                                |
+| **Alignment**  | start, center, end, stretch            | --align-start, --align-center, --align-stretch | align-items flex properties                                    |
+| **Wrap**       | no-wrap, wrap                          | --wrap-nowrap, --wrap-wrap              | flex-wrap: nowrap / wrap                                        |
+| **Spacing**    | padding, gap values                    | --spacing-small, --spacing-medium, etc. | padding and gap CSS properties                                  |
 
-Layer 2: Contextually Intelligent Utilities (Global Native CSS)
+C-MOD/VAR Three-Layer Architecture  
 
-The Global Utility Layer, housed in a single `/styles/utilities.css` file, provides exactly 22 `.u-` prefixed layout classes that perfectly mirror the Framer layout panel. This minimal, professional approach is where the architectural breakthrough occurs:
+**Layer 1: Design Token Foundation (CSS Variables)**  
+At the base, exactly 22 CSS Variables are defined in `/styles/tokens.css`. These tokens encapsulate all Framer layout properties, creating a single source of truth that governs positioning, sizing, layout type, direction, distribution, alignment, wrapping, and spacing. This minimal yet comprehensive token set ensures consistent design semantics and enables effortless global updates.
 
-Framer Parity: Utilities like .u-size-fill and .u-size-relative achieve Contextual Intelligence by utilizing advanced CSS selectors to adapt their behavior based on the parent utility class.
+**Layer 2: Contextually Intelligent Utilities (Global Native CSS)**  
+The global utility layer, implemented in `/styles/utilities.css`, offers 22 `.u-` prefixed classes that mirror the Framer layout panel. These utilities leverage advanced CSS selectors and contextual logic to adapt flexbox behavior dynamically based on parent layout types. For example, `.u-size-fill` applies `flex-grow: 1; flex-basis: 100%;` within a `.u-layout-stack` context, while adapting appropriately in grid or block layouts. All utilities strictly reference the design tokens, maintaining a closed, consistent design loop with zero runtime overhead.
 
-Contextual Logic Example: When applied within a stack layout (.u-layout-stack), the .u-size-fill class overrides its default width/height: 100% to apply flex-grow: 1; flex-basis: 100%;—the correct Flexbox logic for "Fill"—without developer intervention. The same class behaves differently in a Grid context, spanning all rows and columns.
+**Layer 3: Component API and Scoping (TypeScript / CSS Modules)**  
+The final interface exposes a clean, type-safe API through components like the canonical `Frame` component. Properties such as `width="fill"` and `layout="stack"` map directly to the underlying utilities, abstracting complex CSS logic and maximizing developer ergonomics. Component-specific visual treatments are scoped via CSS Modules, which reference global tokens to maintain design system integrity.
 
-Closed Loop: Crucially, all utilities strictly reference central design tokens, maintaining a closed, consistent design loop and ensuring zero runtime overhead.
+Canonical Learning Component: `card.tsx`  
+The `card.tsx` component serves as the definitive example demonstrating all 22 Framer layout properties in action. It showcases the translation of Framer’s layout panel into the C-MOD/VAR system with clear, type-safe props and scoped styling.
 
-Layer 3: Component API and Scoping (TypeScript/CSS Modules)
+```tsx
+import React from 'react';
+import styles from './card.module.css';
 
-This final layer is the interface for the entire system:
+interface CardProps {
+  position?: 'absolute' | 'relative' | 'fixed';
+  width?: 'fill' | 'hug' | 'fixed' | 'relative';
+  height?: 'fill' | 'hug' | 'fixed' | 'relative';
+  layout?: 'stack' | 'grid' | 'none';
+  direction?: 'horizontal' | 'vertical';
+  distribution?: 'start' | 'center' | 'end' | 'space-between' | 'space-around';
+  alignment?: 'start' | 'center' | 'end' | 'stretch';
+  wrap?: 'no-wrap' | 'wrap';
+  spacing?: 'small' | 'medium' | 'large';
+  fixedWidthPx?: number;
+  fixedHeightPx?: number;
+}
 
-Minimal API: The Frame component in TypeScript exposes clean, type-safe properties (e.g., width="fill", layout="stack") that match Framer's visual controls. This API hides the complex contextual utility logic, maximizing developer ergonomics.
+export const Card: React.FC<CardProps> = ({
+  position = 'relative',
+  width = 'hug',
+  height = 'hug',
+  layout = 'stack',
+  direction = 'vertical',
+  distribution = 'start',
+  alignment = 'stretch',
+  wrap = 'no-wrap',
+  spacing = 'medium',
+  fixedWidthPx,
+  fixedHeightPx,
+  children,
+}) => {
+  const positionClass = `u-position-${position}`;
+  const layoutClass = `u-layout-${layout}`;
+  const directionClass = `u-direction-${direction}`;
+  const distributionClass = `u-distribution-${distribution}`;
+  const alignmentClass = `u-alignment-${alignment}`;
+  const wrapClass = `u-wrap-${wrap}`;
+  const spacingClass = `u-spacing-${spacing}`;
 
-Component Scoping: CSS Modules are used for component-specific visual treatments (animations, unique colors). A cardinal rule remains: all scoped styles must reference the global CSS Variables, tethering unique styles to the centralized design system.
+  const sizeStyle = {
+    width:
+      width === 'fixed' && fixedWidthPx ? `${fixedWidthPx}px`
+        : width === 'fill' ? 'var(--size-fill)'
+        : width === 'relative' ? 'var(--size-relative)'
+        : 'auto',
+    height:
+      height === 'fixed' && fixedHeightPx ? `${fixedHeightPx}px`
+        : height === 'fill' ? 'var(--size-fill)'
+        : height === 'relative' ? 'var(--size-relative)'
+        : 'auto',
+  };
 
-Fluidity, Sovereignty, and Strategic Advantages
-The system's technical structure is guided by a philosophy of Design Sovereignty and Fluid Responsive Design:
+  return (
+    <div
+      className={`${positionClass} ${layoutClass} ${directionClass} ${distributionClass} ${alignmentClass} ${wrapClass} ${spacingClass} ${styles.card}`}
+      style={sizeStyle}
+    >
+      {children}
+    </div>
+  );
+};
+```
 
-Intrinsic Responsiveness: The architecture promotes a paradigm shift away from brittle media queries. By leveraging container-relative tokens, components are inherently adaptable, flowing and reflowing based on available space. This creates a self-regulating ecosystem that scales gracefully across all device contexts.
+Intrinsic Responsiveness and Design Sovereignty  
+By relying on container-relative CSS variables and contextual utilities, the system inherently adapts to available space without brittle media queries. Components flow and reflow fluidly, creating a self-regulating responsive ecosystem. Developers retain full creative sovereignty by working directly with native CSS and tokens, unlocking advanced features like container queries and complex selectors, free from third-party framework constraints.
 
-Creative Sovereignty: Building the system from native CSS and custom tokens grants developers access to the language's full expressive power (container queries, advanced selectors) without the limitations of third-party frameworks. The codebase becomes an owned, evolvable asset.
+Next.js Optimization and Performance  
+The C-MOD/VAR architecture aligns seamlessly with Next.js conventions. Global CSS tokens and utilities enable automatic code splitting and critical CSS extraction during server-side rendering. CSS Modules scope component styles efficiently, ensuring zero runtime overhead and optimal performance without additional tooling complexity.
 
-Next.js Optimization: The C-MOD/VAR approach builds with the grain of Next.js, leveraging its native support for CSS Modules and global CSS. This harmony ensures automatic code splitting, zero runtime overhead, and optimal critical CSS extraction during server-side rendering, maximizing performance without complex tooling.
+Team Scalability and Developer Experience  
+The clean separation into tokens, utilities, and component APIs creates an intuitive mental model that accelerates onboarding and collaboration. The type-safe minimal API shields developers from CSS complexity while maintaining full flexibility, enabling teams to scale code quality and architectural clarity as projects grow.
 
-Team Scalability: The clean separation of concerns and reliance on fundamental web standards creates an intuitive mental model. This significantly accelerates developer onboarding, ensuring the architecture scales in quality and clarity alongside the team and codebase.
+Summary  
+The C-MOD/VAR Standard’s Framer-to-Flexbox approach offers a robust, scalable, and elegant solution for replicating Framer layout behavior using native web standards. Its three-layer architecture, precise property mappings, and canonical learning components empower teams to build fluid, performant, and maintainable interfaces with full design sovereignty and developer ergonomics.
