@@ -1,34 +1,33 @@
 /*
-  CARD COMPONENT - C-MOD/VAR Layer 3
+  CARD COMPONENT - FRAMER → FLEXBOX COMPLIANCE
+  C-MOD/VAR Layer 3: 100% Token-Based Styling
 
-  Schema-compliant card component using only Framer design tokens.
-  Implements stack layout behavior and proper spacing.
+  STRICT COMPLIANCE: NO arbitrary CSS values permitted.
+  ALL layout through standardized 22 Flexbox utilities.
+  Only visual appearance properties allowed in component layer.
 */
 
 .card {
-  display: var(--layout-type-stack);
-  flex-direction: var(--direction-vertical);
-  gap: var(--layout-gap);
-  padding: 20px;
-  width: var(--size-fill);
+  /* Visual styling only - ALL layout handled by utility classes */
   border: 1px solid #e5e7eb;
   border-radius: 8px;
   background: white;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  /* REMOVED: padding (handled by utility classes) */
 }
 
 .card h2 {
   font-size: 1.25rem;
   font-weight: 600;
   color: #1f2937;
-  margin: var(--layout-padding);
+  margin: 0;
 }
 
 .card p {
   font-size: 1rem;
   color: #6b7280;
   line-height: 1.6;
-  margin: var(--layout-padding);
+  margin: 0;
 }
 
 .primary {

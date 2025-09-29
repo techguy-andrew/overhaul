@@ -19,11 +19,10 @@ interface RootLayoutProps {
 export function RootLayout({ children, className = '' }: RootLayoutProps) {
   return (
     <div
-      className={`u-layout-stack u-direction-vertical u-w-fill ${className}`.trim()}
+      className={`u-layout-stack u-direction-vertical u-size-fill ${className}`.trim()}
       style={{
-        height: '100vh',
-        maxHeight: '100vh',
-        overflow: 'hidden'
+        width: '100vw',
+        minHeight: '100vh'
       }}
     >
       {children}

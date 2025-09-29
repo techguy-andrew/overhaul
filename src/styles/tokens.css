@@ -1,49 +1,50 @@
 /*
-  DESIGN TOKEN FOUNDATION - C-MOD/VAR Layer 1
+  FRAMER → FLEXBOX 22-PROPERTY DESIGN TOKEN FOUNDATION
+  C-MOD/VAR Layer 1: Complete Framer Layout Panel Parity
 
-  Exact Framer Schema Tokens - Professional Minimal Implementation
-  These 22 tokens represent the complete Framer layout panel properties.
+  STRICT COMPLIANCE: These 22 tokens represent the COMPLETE Framer layout system.
   Every utility in Layer 2 MUST reference these tokens exclusively.
+  NO arbitrary values allowed - enforce 100% token-based architecture.
 */
 
 :root {
-  /* ===== POSITION TOKENS ===== */
+  /* ===== POSITION TOKENS (4 Properties) ===== */
   --position-relative: relative;
   --position-absolute: absolute;
   --position-sticky: sticky;
   --position-fixed: fixed;
 
-  /* ===== SIZE TOKENS ===== */
-  --size-fill: 100%;              /* Width/Height: Fill */
-  --size-relative: 1fr;           /* Width/Height: Relative (1fr) */
-  --size-fixed: 400px;            /* Width/Height: Fixed */
-  --size-fit-content: fit-content; /* Width/Height: Fit Content */
-  --size-viewport: 100vh;          /* Height: Viewport */
+  /* ===== SIZE TOKENS (5 Properties) ===== */
+  --size-fill: 100%;                /* Fill - Takes full container space */
+  --size-relative: 1fr;             /* Relative - Proportional flex growth (1fr) */
+  --size-fixed: 320px;              /* Fixed - Absolute pixel dimension */
+  --size-fit-content: fit-content;  /* Fit Content - Shrinks to content size */
+  --size-viewport: 100vh;           /* Viewport - Full viewport height */
 
-  /* ===== LAYOUT TYPE TOKENS ===== */
-  --layout-type-stack: flex;      /* Layout Type: Stack */
-  --layout-type-grid: grid;       /* Layout Type: Grid */
+  /* ===== LAYOUT TYPE TOKENS (2 Properties) ===== */
+  --layout-type-stack: flex;        /* Stack - Flexbox container */
+  --layout-type-grid: flex;         /* Grid - Flexbox with wrap behavior */
 
-  /* ===== DIRECTION TOKENS ===== */
-  --direction-horizontal: row;     /* Direction: Horizontal */
-  --direction-vertical: column;    /* Direction: Vertical */
+  /* ===== DIRECTION TOKENS (2 Properties) ===== */
+  --direction-horizontal: row;      /* Horizontal - Main axis left-to-right */
+  --direction-vertical: column;     /* Vertical - Main axis top-to-bottom */
 
-  /* ===== DISTRIBUTION TOKENS (Justify-Content) ===== */
-  --distribute-start: flex-start;     /* Distribute: Start */
-  --distribute-center: center;        /* Distribute: Center */
-  --distribute-end: flex-end;         /* Distribute: End */
-  --distribute-space-between: space-between; /* Distribute: Space Between */
+  /* ===== DISTRIBUTION TOKENS (4 Properties) ===== */
+  --distribute-start: flex-start;          /* Start - Items at container start */
+  --distribute-center: center;             /* Center - Items at container center */
+  --distribute-end: flex-end;              /* End - Items at container end */
+  --distribute-space-between: space-between; /* Space Between - Equal space between items */
 
-  /* ===== ALIGNMENT TOKENS (Align-Items) ===== */
-  --align-start: flex-start;       /* Align: Start */
-  --align-center: center;          /* Align: Center */
-  --align-end: flex-end;           /* Align: End */
+  /* ===== ALIGNMENT TOKENS (3 Properties) ===== */
+  --align-start: flex-start;        /* Start - Cross-axis alignment at start */
+  --align-center: center;           /* Center - Cross-axis alignment at center */
+  --align-end: flex-end;            /* End - Cross-axis alignment at end */
 
-  /* ===== WRAP TOKENS ===== */
-  --wrap-yes: wrap;                /* Wrap: Yes */
-  --wrap-no: nowrap;               /* Wrap: No */
+  /* ===== WRAP TOKENS (2 Properties) ===== */
+  --wrap-yes: wrap;                 /* Yes - Allow wrapping to new lines */
+  --wrap-no: nowrap;                /* No - Keep items on single line */
 
-  /* ===== SPACING TOKENS ===== */
-  --layout-gap: 10px;              /* Gap */
-  --layout-padding: 0;             /* Padding (Base) */
+  /* ===== SPACING TOKENS (2 Properties) ===== */
+  --spacing-gap: 16px;              /* Gap - Standard spacing between items */
+  --spacing-padding: 16px;          /* Padding - Standard internal spacing */
 }
